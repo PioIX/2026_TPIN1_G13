@@ -1,13 +1,7 @@
-async function cargarClubes() {
-    try {
-        const res = await fetch("http://localhost:4000/Clubes");
-        const data = await res.json();
+document.querySelector("#btnLogin").addEventListener("click", () => {
+    window.location.href = "login.html";
+});
 
-        cargarTabla(data);
-
-    } catch (error) {
-        console.error("Error cargando clubes:", error);
-    }
-}
-
-cargarClubes();
+document.querySelector("#btnRegistro").addEventListener("click", () => {
+    window.location.href = "registro.html";
+});
