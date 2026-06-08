@@ -27,126 +27,136 @@ app.get('/', function(req, res){
  * res = response. Voy a responderle al cliente
 */
 
-app.get('/Clubes', async function(req,res){
+app.get('/Usuarios', async (req, res) => {
 
-    try{
+    try {
 
         let respuesta;
 
-        if(req.query.id_club != undefined){
+        if (req.query.id_usuario != undefined) {
+
             respuesta = await realizarQuery(`
-                SELECT * FROM Clubes
-                WHERE id_club = ${req.query.id_club}
+                SELECT *
+                FROM Usuarios
+                WHERE id_usuario = ${req.query.id_usuario}
             `);
-        }else{
+
+        } else {
+
             respuesta = await realizarQuery(`
-                SELECT * FROM Clubes
+                SELECT *
+                FROM Usuarios
             `);
+
         }
 
         res.send(respuesta);
 
-    }catch(error){
+    } catch (error) {
         res.status(500).send(error);
     }
 
 });
 
-app.get('/Estadios', async function(req,res){
 
-    try{
+/*post usuarios (registro)*/
+app.post('/Usuarios', async (req, res) => {
 
-        const respuesta = await realizarQuery(`
-            SELECT * FROM Estadios
+    try {
+
+        const existe = await realizarQuery(`
+            SELECT *
+            FROM Usuarios
+            WHERE usuario = '${req.body.usuario}'
+               OR email = '${req.body.email}'
         `);
 
-        res.send(respuesta);
+        if (existe.length > 0) {
 
-    }catch(error){
-        res.status(500).send(error);
-    }
+            return res.status(400).send({
+                /*ok: false,*/
+                mensaje: 'El usuario o email ya existe'
+            });
 
-});
-
-app.get('/Socios', async function(req,res){
-
-    try{
-
-        const respuesta = await realizarQuery(`
-            SELECT * FROM Socios
-        `);
-
-        res.send(respuesta);
-
-    }catch(error){
-        res.status(500).send(error);
-    }
-
-});
-
-app.post('/Clubes', async function(req,res){
-
-    try{
-
-        console.log("DATOS RECIBIDOS:", req.body);
+        }
 
         await realizarQuery(`
-            INSERT INTO Clubes
-            (nombre,fecha_fundacion,cant_socios,cant_titulos,tiene_futbol_femenino)
+            INSERT INTO Usuarios
+            (
+                nombre,
+                apellido,
+                usuario,
+                email,
+                contrasena,
+                puntaje,
+                victorias,
+                derrotas,
+                partidas_jugadas
+            )
             VALUES
             (
-                "${req.body.nombre}",
-                "${req.body.fecha_fundacion}",
-                ${req.body.cant_socios},
-                ${req.body.cant_titulos},
-                ${req.body.tiene_futbol_femenino}
+                '${req.body.nombre}',
+                '${req.body.apellido}',
+                '${req.body.usuario}',
+                '${req.body.email}',
+                '${req.body.contrasena}',
+                0,
+                0,
+                0,
+                0
             )
         `);
 
-        res.send("Club agregado");
+        res.send({
+            /*ok: true,*/
+            mensaje: 'Usuario registrado correctamente'
+        });
 
-    }catch(error){
-        console.error("ERROR SQL:", error);
-        res.status(500).send(error);
-    }
-
-});
-
-app.delete('/Clubes', async function(req, res){
-
-    try{
-
-        await realizarQuery(`
-            DELETE FROM Clubes
-            WHERE id_club = ${req.query.id_club}
-        `);
-
-        res.send("Club eliminado");
-
-    }catch(error){
-        res.status(500).send(error);
-    }
-
-});
-
-
-app.put('/Clubes/:id', async function (req, res) {
-    try {
-        const { nombre, fecha_fundacion, cant_socios, cant_titulos, tiene_futbol_femenino } = req.body;
-
-        await realizarQuery(`
-            UPDATE Clubes 
-            SET 
-                nombre='${nombre}',
-                fecha_fundacion='${fecha_fundacion}',
-                cant_socios=${cant_socios},
-                cant_titulos=${cant_titulos},
-                tiene_futbol_femenino=${tiene_futbol_femenino}
-            WHERE id_club=${req.params.id};
-        `);
-
-        res.send("Club actualizado");
     } catch (error) {
-        res.status(500).send("Error al actualizar club");
+
+        res.status(500).send(error);
+
     }
+
 });
+
+
+
+app.post('/Login', async (req, res) => {
+
+    try {
+        const usuario = await realizarQuery(`
+            SELECT *
+            FROM Usuarios
+            WHERE usuario = '${req.body.usuario}'
+              AND contrasena = '${req.body.contrasena}'
+        `);
+
+        if (usuario.length === 0) {
+
+            return res.send({
+                ok: false,
+                mensaje: 'Usuario o contraseña incorrectos'
+            });
+
+        }
+
+        res.send({
+            ok: true,
+            usuario: usuario[0]
+        });
+
+    } catch (error) {
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+//put
+
+
+
+//delete
+
