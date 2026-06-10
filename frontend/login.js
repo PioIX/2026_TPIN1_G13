@@ -39,3 +39,12 @@ async function iniciarSesion() {
     }
 
 }
+
+
+document.querySelector("#btnLoginaReg")
+    .addEventListener("click", () => {
+
+        window.location.href =
+            "registro.html";
+
+    });
