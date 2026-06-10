@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego</title>
+</head>
+<body>
+
+    <h1>Ahorcado</h1>
+
+    <h2 id="ronda">
+        Ronda 1 / 10
+    </h2>
+
+    <h2 id="vidas">
+        Vidas: 3
+    </h2>
+
+    <div id="palabra">
+        _ _ _ _ _
+    </div>
+
+    <br>
+
+    <input
+        type="text"
+        maxlength="1"
+        id="letra"
+        placeholder="Letra"
+    >
+
+    <button id="btnIntentar">
+        Intentar
+    </button>
+
+    <button id="btnPista">
+        Usar Pista
+    </button>
+
+    <div id="pista"></div>
+
+    <script src="./scripts/juego.js"></script>
+
+</body>
+</html>
