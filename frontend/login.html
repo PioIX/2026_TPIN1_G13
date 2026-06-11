@@ -2,37 +2,53 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+
+    <title>Iniciar Sesión</title>
+
+    <link rel="stylesheet" href="/frontend/styles/general.css">
+    <link rel="stylesheet" href="/frontend/styles/login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <h1>Iniciar Sesión</h1>
+    <video autoplay muted loop id="matrix-video">
+        <source src="/frontend/videos/Matrix _ Background Video _ Screensaver.mp4" type="video/mp4">
+    </video>
 
-    <input
-        type="text"
-        id="usuario"
-        placeholder="Usuario"
-    >
+<div class="contenedor-login">
 
-    <br><br>
+    <h1>INICIAR SESIÓN</h1>
 
-    <input
-        type="password"
-        id="contrasena"
-        placeholder="Contraseña"
-    >
+    <div class="credenciales">
 
-    <br><br>
+        <input
+            type="text"
+            id="usuario"
+            placeholder="Usuario"
+        >
+
+        <input
+            type="password"
+            id="contrasena"
+            placeholder="Contraseña"
+        >
+
+    </div>
 
     <button id="btnLogin">
         Ingresar
     </button>
 
-    <button id="btnLoginaReg">
-        No tenes usuario, Registrate
+    <button id="btnLoginaReg" class="registro">
+        ¿No tenés cuenta? Registrate
     </button>
 
+</div>
     <script src="login.js"></script>
 
 </body>
-</html>

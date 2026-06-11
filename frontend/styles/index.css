@@ -1,41 +1,108 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+.contenedor{
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:80px;
 }
 
-body{
-    min-height:100vh;
+.titulo{
+    text-align:center;
+}
 
-    font-family:'Orbitron',sans-serif;
+.titulo h1{
+    font-size:7rem;
+
+    font-weight:900;
 
     color:#8BFF6D;
 
-    overflow:hidden;
+    animation: neonTitulo 4s ease-in-out infinite;
 }
 
-#matrix-video{
-    position:fixed;
+.titulo h2{
+    font-size:2rem;
 
-    top:0;
-    left:0;
+    margin-top:20px;
 
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    z-index:-2;
+    color:white;
 }
 
-body::before{
-    content:"";
+.botones{
+    display:flex;
 
-    position:fixed;
+    flex-direction:column;
 
-    inset:0;
+    gap:35px;
+}
 
-    background:rgba(0,15,0,0.6);
+.botones button{
+    width:350px;
 
-    z-index:-1;
+    padding:20px;
+
+    border:4px solid #39FF14;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,0.5);
+
+    color:#8BFF6D;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:1.6rem;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.botones button:hover{
+    transform:scale(1.05);
+
+    background:#39FF14;
+
+    color:black;
+
+    box-shadow:
+        0 0 15px #39FF14,
+        0 0 30px #39FF14;
+}
+
+
+
+@keyframes neonTitulo{
+
+    0%{
+        opacity: 0.75;
+
+        text-shadow:
+            0 0 5px #8BFF6D,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+    }
+
+    50%{
+        opacity: 1;
+
+        text-shadow:
+            0 0 10px #8BFF6D,
+            0 0 25px #39FF14,
+            0 0 50px #39FF14,
+            0 0 80px #39FF14;
+    }
+
+    100%{
+        opacity: 0.75;
+
+        text-shadow:
+            0 0 5px #8BFF6D,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+    }
 }
