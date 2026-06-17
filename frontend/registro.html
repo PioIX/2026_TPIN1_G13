@@ -2,32 +2,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
     <title>Registro</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/registro.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <h1>Registro</h1>
+<div class="contenedor-registro">
 
-    <input type="text" id="nombre" placeholder="Nombre">
-    <br><br>
+    <h1>REGISTRARSE</h1>
 
-    <input type="text" id="apellido" placeholder="Apellido">
-    <br><br>
+    <div class="fila">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="text" id="apellido" placeholder="Apellido">
+    </div>
 
-    <input type="text" id="usuario" placeholder="Usuario">
-    <br><br>
-
-    <input type="email" id="email" placeholder="Email">
-    <br><br>
+    <div class="fila">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="usuario" placeholder="Usuario">
+    </div>
 
     <input type="password" id="contrasena" placeholder="Contraseña">
-    <br><br>
 
     <button id="btnRegistro">
-        Registrarse
+        Crear cuenta
     </button>
 
-    <script src="registro.js"></script>
+    <button class="volver">
+        <a href="login.html" class="volver">
+            ¿Ya tenés cuenta? Ingresá
+        </a>
+    </button>
 
+</div>
+    <script src="registro.js"></script>
 </body>
 </html>
