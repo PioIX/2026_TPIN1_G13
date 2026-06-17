@@ -14,13 +14,13 @@ background:
         transparent 45%
     ),
 
-    linear-gradient(
-        135deg,
-        #041b04 0%,
-        #0b300b 35%,
-        #124212 70%,
-        #061406 100%
-    );
+        linear-gradient(
+            135deg,
+            #054405 0%,
+            #166116 35%,
+            #229122 70%,
+            #061406 100%
+        );
 
     background-attachment: fixed;
     

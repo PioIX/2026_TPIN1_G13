@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Categorías</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/seleccionar_categoria.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <h1>Seleccionar Categoría</h1>
+    <div class="contenedor-categorias">
 
-    <select id="categoria">
+        <h1>SELECCIONAR CATEGORÍA</h1>
 
-        <option value="1">
-            Personajes Series y Películas
-        </option>
+        <div class="cards">
 
-        <option value="2">
-            Videojuegos
-        </option>
+            <div class="card" data-id="1">
+                <div class="emoji">🎬</div>
+                <div>Series y Películas</div>
+            </div>
 
-        <option value="3">
-            Deportes
-        </option>
+            <div class="card" data-id="2">
+                <div class="emoji">🎮</div>
+                <div>Videojuegos</div>
+            </div>
 
-        <option value="4">
-            Música
-        </option>
+            <div class="card" data-id="3">
+                <div class="emoji">⚽</div>
+                <div>Deportes</div>
+            </div>
 
-    </select>
+            <div class="card" data-id="4">
+                <div class="emoji">🎵</div>
+                <div>Música</div>
+            </div>
 
-    <br><br>
+        </div>
 
-    <button id="btnComenzar">
-        Comenzar Partida
-    </button>
+        <input
+            type="hidden"
+            id="categoria"
+        >
+
+        <button id="btnComenzar">
+            COMENZAR PARTIDA
+        </button>
+
+    </div>
 
     <script src="categorias.js"></script>
 
