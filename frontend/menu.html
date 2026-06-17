@@ -2,27 +2,45 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
+
     <title>Menú Principal</title>
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/menu.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <h1 id="bienvenida"></h1>
+    <div class="contenedor-menu">
 
-    <button id="btnJugar">
-        Jugar
-    </button>
+        <h1 id="bienvenida">Bienvenido</h1>
 
-    <button id="btnRanking">
-        Ranking General
-    </button>
+        <div class="botones-menu">
 
-    <button id="btnEstadisticas">
-        Mis Estadísticas
-    </button>
+            <button id="btnJugar">
+                JUGAR
+            </button>
 
-    <button id="btnLogout">
-        Cerrar Sesión
-    </button>
+            <button id="btnRanking">
+                RANKING GENERAL
+            </button>
+
+            <button id="btnEstadisticas">
+                MIS ESTADÍSTICAS
+            </button>
+
+            <button id="btnLogout" class="logout">
+                CERRAR SESIÓN
+            </button>
+
+        </div>
+
+    </div>
 
     <script src="menu.js"></script>
 
