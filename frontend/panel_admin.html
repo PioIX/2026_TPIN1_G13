@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Administrador</title>
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/panel_admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <video autoplay muted loop id="matrix-video">
+        <source src="public/video_menu.mp4" type="video/mp4">
+    </video>
+
+    <div class="admin-badge">
+        MODO ADMINISTRADOR
+    </div>
+
+    <div class="contenedor">
+
+        <div class="titulo">
+
+            <h1>PANEL ADMIN</h1>
+
+            <h2>
+                Gestión del sistema de juego
+            </h2>
+
+        </div>
+
+        <div class="acciones">
+
+            <button id="btnPalabras">
+                Gestionar Palabras
+            </button>
+
+            <button id="btnUsuarios">
+                Gestionar Usuarios
+            </button>
+
+            <button id="btnPartidas">
+                Gestionar Partidas
+            </button>
+
+            <button id="btnCerrarSesion" class="btn-salir">
+                Cerrar Sesión
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="scripts/panel_admin.js"></script>
+
+</body>
+
+</html>
