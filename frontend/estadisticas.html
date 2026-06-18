@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Estadísticas</title>
+
+    <title>Mis Estadísticas</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/estadisticas.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <h1>Mis Estadísticas</h1>
 
-    <p id="victorias"></p>
-    <p id="derrotas"></p>
-    <p id="puntaje"></p>
-    <p id="partidas"></p>
+    <div class="contenedor-estadisticas">
 
-    <script src="./scripts/estadisticas.js"></script>
+        <h1>MIS ESTADÍSTICAS</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>🏆 Victorias</h2>
+                <p id="victorias">0</p>
+            </div>
+
+            <div class="card">
+                <h2>❌ Derrotas</h2>
+                <p id="derrotas">0</p>
+            </div>
+
+            <div class="card">
+                <h2>⭐ Puntaje</h2>
+                <p id="puntaje">0</p>
+            </div>
+
+            <div class="card">
+                <h2>🎮 Partidas</h2>
+                <p id="partidas">0</p>
+            </div>
+
+        </div>
+
+        <button id="btnVolver">
+            VOLVER AL MENÚ
+        </button>
+
+    </div>
+
+    <script src="estadisticas.js"></script>
 
 </body>
 </html>
