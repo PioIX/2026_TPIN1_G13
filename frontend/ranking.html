@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Ranking</title>
+
+    <title>Ranking General</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/ranking.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <h1>Ranking General</h1>
+    <div class="contenedor-ranking">
 
-    <table border="1">
+        <h1>RANKING GENERAL</h1>
 
-        <thead>
+        <table>
 
-            <tr>
-                <th>Posición</th>
-                <th>Usuario</th>
-                <th>Puntaje</th>
-            </tr>
+            <thead>
 
-        </thead>
+                <tr>
 
-        <tbody id="tablaRanking">
+                    <th>#</th>
 
-        </tbody>
+                    <th>USUARIO</th>
 
-    </table>
+                    <th>PUNTAJE</th>
 
-    <script src="./scripts/ranking.js"></script>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaRanking">
+
+            </tbody>
+
+        </table>
+
+        <button id="btnVolver">
+
+            VOLVER AL MENÚ
+
+        </button>
+
+    </div>
+
+    <script src="ranking.js"></script>
 
 </body>
 </html>

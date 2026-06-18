@@ -1,0 +1,200 @@
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    font-family:'Orbitron',sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(40,120,40,.35),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            #041b04 0%,
+            #0b300b 35%,
+            #124212 70%,
+            #061406 100%
+        );
+
+    background-attachment:fixed;
+
+}
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.02) 0px,
+            rgba(255,255,255,.02) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.contenedor-ranking{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:40px;
+
+}
+
+h1{
+
+    margin:0;
+
+    color:#8BFF6D;
+
+    font-size:4rem;
+
+    text-shadow:
+        0 0 10px rgba(57,255,20,.7);
+
+}
+
+table{
+
+    width:900px;
+
+    border-collapse:collapse;
+
+    border:4px solid #39FF14;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:rgba(57,255,20,.08);
+
+    box-shadow:
+        0 0 25px rgba(57,255,20,.25);
+
+}
+
+thead{
+
+    background:#39FF14;
+
+}
+
+thead th{
+
+    color:black;
+
+    font-size:1.3rem;
+
+    padding:20px;
+
+}
+
+tbody td{
+
+    padding:18px;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:1.15rem;
+
+    border-top:1px solid rgba(57,255,20,.25);
+
+}
+
+tbody tr{
+
+    transition:.25s;
+
+}
+
+tbody tr:hover{
+
+    background:rgba(57,255,20,.18);
+
+}
+
+tbody tr:nth-child(1){
+
+    color:#FFD700;
+
+    font-weight:bold;
+
+}
+
+tbody tr:nth-child(2){
+
+    color:#C0C0C0;
+
+    font-weight:bold;
+
+}
+
+tbody tr:nth-child(3){
+
+    color:#CD7F32;
+
+    font-weight:bold;
+
+}
+
+#btnVolver{
+
+    width:350px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#39FF14;
+
+    color:black;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:1.2rem;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#btnVolver:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(57,255,20,.8);
+
+}

@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
+
     <title>Resultado</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/resultado.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <h1>Partida Terminada</h1>
+    <div class="contenedor-resultado">
 
-    <h2 id="puntajeFinal">
-        Puntaje: 0
-    </h2>
+        <h1>PARTIDA TERMINADA</h1>
 
-    <button id="btnReiniciar">
-        Jugar de Nuevo
-    </button>
+        <div class="trofeo">
+            🏆
+        </div>
 
-    <button id="btnMenu">
-        Volver al Menú
-    </button>
+        <div id="puntajeFinal">
+            Puntaje: 0
+        </div>
 
-    <button id="btnRanking">
-        Ver Ranking
-    </button>
+        <div class="botones">
 
-    <script src="./scripts/resultado.js"></script>
+            <button id="btnReiniciar">
+                JUGAR DE NUEVO
+            </button>
+
+            <button id="btnMenu">
+                VOLVER AL MENÚ
+            </button>
+
+            <button id="btnRanking">
+                VER RANKING
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="resultado.js"></script>
 
 </body>
 </html>
