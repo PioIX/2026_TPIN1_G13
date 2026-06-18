@@ -1,0 +1,205 @@
+.contenedor{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+body{
+     background:
+        radial-gradient(
+            circle at top,
+            rgba(40, 120, 40, 0.35),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            #041b04 0%,
+            #0b300b 35%,
+            #124212 70%,
+            #061406 100%
+        );
+
+    background-attachment: fixed;
+}
+.admin-badge{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    padding:12px 25px;
+
+    border:2px solid #39FF14;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,0.55);
+
+    color:#8BFF6D;
+
+    font-size:0.9rem;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    box-shadow:
+        0 0 10px #39FF14,
+        0 0 20px rgba(57,255,20,0.4);
+
+}
+
+.titulo{
+
+    text-align:center;
+
+}
+
+.titulo h1{
+
+    font-size:5rem;
+
+    font-weight:900;
+
+    color:#8BFF6D;
+
+    text-transform:uppercase;
+
+    animation: neonTitulo 4s ease-in-out infinite;
+
+}
+
+.titulo h2{
+
+    margin-top:20px;
+
+    font-size:1.5rem;
+
+    font-weight:400;
+
+    color:white;
+
+    letter-spacing:2px;
+
+}
+
+.acciones{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+.acciones button{
+
+    width:420px;
+
+    padding:22px;
+
+    border:4px solid #39FF14;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,0.45);
+
+    color:#8BFF6D;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:1.3rem;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+.acciones button:hover{
+
+    transform:scale(1.05);
+
+    background:#39FF14;
+
+    color:black;
+
+    box-shadow:
+        0 0 15px #39FF14,
+        0 0 30px #39FF14,
+        0 0 50px #39FF14;
+
+}
+
+.btn-salir{
+
+    margin-top:20px;
+
+    border-color:#ff4d4d !important;
+
+    color:#ff4d4d !important;
+
+}
+
+.btn-salir:hover{
+
+    background:#ff4d4d !important;
+
+    color:black !important;
+
+    box-shadow:
+        0 0 15px #ff4d4d,
+        0 0 30px #ff4d4d;
+
+}
+
+@keyframes neonTitulo{
+
+    0%{
+
+        opacity:0.8;
+
+        text-shadow:
+            0 0 5px #8BFF6D,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        text-shadow:
+            0 0 10px #8BFF6D,
+            0 0 25px #39FF14,
+            0 0 50px #39FF14,
+            0 0 80px #39FF14;
+
+    }
+
+    100%{
+
+        opacity:0.8;
+
+        text-shadow:
+            0 0 5px #8BFF6D,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14;
+
+    }
+
+}
