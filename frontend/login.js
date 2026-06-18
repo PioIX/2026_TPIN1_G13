@@ -30,7 +30,17 @@ async function iniciarSesion() {
             JSON.stringify(datos.usuario)
         );
 
-        window.location.href = "menu.html";
+        if (datos.usuario.es_admin == 1) {
+
+            window.location.href =
+                "panel_admin.html";
+
+        } else {
+
+            window.location.href =
+                "menu.html";
+
+        }
 
     } else {
 
@@ -39,7 +49,6 @@ async function iniciarSesion() {
     }
 
 }
-
 
 document.querySelector("#btnLoginaReg")
     .addEventListener("click", () => {
