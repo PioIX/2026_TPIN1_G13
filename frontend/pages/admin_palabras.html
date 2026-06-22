@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Gestionar Palabras</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/panel_admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <video autoplay muted loop id="matrix-video">
+        <source src="/public/video_menu.mp4" type="video/mp4">
+    </video>
+    
+    <div class="contenedor">
+
+        <h1>GESTIÓN DE PALABRAS</h1>
+
+        <button id="btnAgregar">
+            + AGREGAR PALABRA
+        </button>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>PALABRA</th>
+                    <th>CATEGORÍA</th>
+                    <th>DIFICULTAD</th>
+                    <th>PISTA</th>
+                    <th>ACCIONES</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaPalabras">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="/frontend/scripts/admin_palabras.js"></script>
+
+</body>
+
+</html>

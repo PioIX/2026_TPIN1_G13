@@ -154,9 +154,126 @@ app.post('/Login', async (req, res) => {
 
 });
 
-//put
+// PEDIDOS ADMIN
+
+app.get('/Palabras', async function(req,res){
+
+    try{
+
+        let respuesta;
+
+        if(req.query.id_palabra != undefined){
+
+            respuesta = await realizarQuery(`
+                SELECT *
+                FROM Palabras
+                WHERE id_palabra = ${req.query.id_palabra}
+            `);
+
+        }else{
+
+            respuesta = await realizarQuery(`
+                SELECT *
+                FROM Palabras
+            `);
+
+        }
+
+        res.send(respuesta);
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
 
 
+app.post('/Palabras', async function(req,res){
 
-//delete
+    try{
 
+        console.log("DATOS RECIBIDOS:", req.body);
+
+        await realizarQuery(`
+            INSERT INTO Palabras
+            (
+                id_categoria,
+                palabra,
+                pista,
+                dificultad
+            )
+            VALUES
+            (
+                ${req.body.id_categoria},
+                '${req.body.palabra}',
+                '${req.body.pista}',
+                '${req.body.dificultad}'
+            )
+        `);
+
+        res.send({
+            ok:true,
+            mensaje:"Palabra agregada"
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+app.put('/Palabras/:id', async function(req,res){
+
+    try{
+
+        await realizarQuery(`
+            UPDATE Palabras
+            SET
+                id_categoria = ${req.body.id_categoria},
+                palabra = '${req.body.palabra}',
+                pista = '${req.body.pista}',
+                dificultad = '${req.body.dificultad}'
+            WHERE id_palabra = ${req.params.id}
+        `);
+
+        res.send({
+            ok:true,
+            mensaje:"Palabra actualizada"
+        });
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+app.delete('/Palabras', async function(req,res){
+
+    try{
+
+        await realizarQuery(`
+            DELETE FROM Palabras
+            WHERE id_palabra = ${req.query.id_palabra}
+        `);
+
+        res.send({
+            ok:true,
+            mensaje:"Palabra eliminada"
+        });
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
