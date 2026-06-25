@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <title>Gestión de Palabras</title>
+    <title>Palabras de Categoría</title>
 
     <link rel="stylesheet" href="/frontend/styles/styles.css">
     <link rel="stylesheet" href="/frontend/styles/panel_admin.css">
@@ -25,35 +25,40 @@
 
     <div class="contenedor">
 
-        <h1>GESTIÓN DE PALABRAS</h1>            <!--Lo hago filtrar por categorias, sino le tiró 80 palabras de una y queda horrible-->
+        <h1 id="tituloCategoria">
+            CATEGORÍA
+        </h1>
 
-        <div class="acciones">
+        <button id="btnAgregar">
+            + AGREGAR PALABRA
+        </button>
 
-            <button class="categoria" data-id="1">
-                PERSONAJES
-            </button>
+        <table>
 
-            <button class="categoria" data-id="2">
-                VIDEOJUEGOS
-            </button>
+            <thead>
 
-            <button class="categoria" data-id="3">
-                DEPORTES
-            </button>
+                <tr>
+                    <th>PALABRA</th>
+                    <th>DIFICULTAD</th>
+                    <th>PISTA</th>
+                    <th>ACCIONES</th>
+                </tr>
 
-            <button class="categoria" data-id="4">
-                MÚSICA
-            </button>
+            </thead>
 
-        </div>
+            <tbody id="tablaPalabras">
+
+            </tbody>
+
+        </table>
 
         <button id="btnVolver">
-            VOLVER AL PANEL
+            VOLVER
         </button>
 
     </div>
 
-    <script src="/frontend/scripts/admin_palabras.js"></script>
+    <script src="/frontend/scripts/admin_palabras_categoria.js"></script>
 
 </body>
 
