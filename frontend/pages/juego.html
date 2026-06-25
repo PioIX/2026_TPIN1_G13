@@ -1,44 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Juego</title>
+
+    <title>Ahorcado</title>
+    <link rel="stylesheet" href="/frontend/styles/juego.css">
+
 </head>
+
 <body>
-    <h1>Ahorcado</h1>
 
-    <h2 id="ronda">
-        Ronda 1 / 10
-    </h2>
+    <video autoplay muted loop id="matrix-video">
+        <source src="public/Video Menu.mp4" type="video/mp4">
+    </video>
 
-    <h2 id="vidas">
-        Vidas: 3
-    </h2>
+    <div class="contenedor">
 
-    <div id="palabra">
-        _ _ _ _ _
+        <div class="infoPartida">
+
+            <h2 id="ronda">
+                Ronda 1 / 10
+            </h2>
+
+            <h2 id="vidas">
+                ❤️❤️❤️
+            </h2>
+
+            <h2 id="puntaje">
+                Puntaje: 0
+            </h2>
+
+        </div>
+
+        <div class="zonaJuego">
+
+            <h3 id="categoria">
+                Categoría: 
+            </h3>
+
+            <div id="palabra">
+                _ _ _ _ _ _ _ _
+            </div>
+
+            <div id="pista">
+                Pista: ---
+            </div>
+
+        </div>
+
+        <div class="controles">
+
+            <input
+                type="text"
+                maxlength="1"
+                id="letra"
+                placeholder="A"
+                autocomplete="off"
+            >
+
+            <button id="btnIntentar">
+                Intentar
+            </button>
+
+            <button id="btnPista">
+                Usar pista
+            </button>
+
+        </div>
+
+        <div id="letrasUsadas">
+
+            Letras usadas:
+
+        </div>
+
     </div>
 
-    <br>
-
-    <input
-        type="text"
-        maxlength="1"
-        id="letra"
-        placeholder="Letra"
-    >
-
-    <button id="btnIntentar">
-        Intentar
-    </button>
-
-    <button id="btnPista">
-        Usar Pista
-    </button>
-
-    <div id="pista"></div>
-
-    <script src="/frontend/scripts/juego.js"></script>
+    <script src="scripts/juego.js"></script>
 
 </body>
+
 </html>
