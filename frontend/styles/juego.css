@@ -1,0 +1,81 @@
+.contenedor{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:40px;
+
+}
+
+.infoPartida{
+
+    display:flex;
+
+    gap:50px;
+
+}
+
+.zonaJuego{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:30px;
+
+}
+
+#palabra{
+
+    font-size:3rem;
+
+    letter-spacing:15px;
+
+    font-weight:bold;
+
+}
+
+#pista{
+
+    font-size:1.3rem;
+
+}
+
+.controles{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+#letra{
+
+    width:80px;
+
+    height:60px;
+
+    text-align:center;
+
+    font-size:2rem;
+
+    border-radius:10px;
+
+}
+
+button{
+
+    padding:15px 25px;
+
+    cursor:pointer;
+
+}
