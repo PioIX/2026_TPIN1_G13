@@ -156,13 +156,15 @@ app.post('/Login', async (req, res) => {
 
 // PEDIDOS ADMIN
 
+
+// gestion palabras
 app.get('/Palabras', async function(req,res){
 
     try{
 
         let respuesta;
 
-        if(req.query.id_palabra != undefined){
+        if(req.query.id_palabra){
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -170,11 +172,23 @@ app.get('/Palabras', async function(req,res){
                 WHERE id_palabra = ${req.query.id_palabra}
             `);
 
-        }else{
+        }
+        else if(req.query.id_categoria){
 
             respuesta = await realizarQuery(`
                 SELECT *
                 FROM Palabras
+                WHERE id_categoria = ${req.query.id_categoria}
+                ORDER BY palabra
+            `);
+
+        }
+        else{
+
+            respuesta = await realizarQuery(`
+                SELECT *
+                FROM Palabras
+                ORDER BY id_categoria
             `);
 
         }
