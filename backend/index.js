@@ -357,43 +357,7 @@ app.delete('/Usuarios', async function(req,res){
 });
 
 
-// FUNCIONAMIENTO DEL JUEGO
-app.get('/PalabraRandom', async function(req,res){
 
-    console.log("ID RECIBIDO:");
-    console.log(req.query.id_categoria);
-
-    try{
-
-        const respuesta = await realizarQuery(`
-
-            SELECT *
-            FROM Palabras
-
-            WHERE id_categoria = ${req.query.id_categoria}
-
-            ORDER BY RAND()
-
-            LIMIT 1
-
-        `);
-
-        res.send(respuesta[0]);
-
-    }catch(error){
-
-        console.log(error);
-
-        res.status(500).send(error);
-
-    }
-
-
-
-
-
-
-});
 //PEDIDOS ADMIN GESTION PARTIDAS
 
 
@@ -500,6 +464,45 @@ app.delete('/Partidas', async function(req,res){
 
     }catch(error){
 
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+// FUNCIONAMIENTO DEL JUEGO
+app.get('/PalabraRandom', async function(req,res){
+
+    try{
+
+        const respuesta = await realizarQuery(`
+
+            SELECT *
+            FROM Palabras
+            WHERE id_categoria = ${req.query.id_categoria}
+            ORDER BY RAND()
+            LIMIT 1
+
+        `);
+
+        if(respuesta.length == 0){
+
+            return res.send({
+                ok:false,
+                mensaje:"No hay palabras para esta categoría."
+            });
+
+        }
+
+        res.send({
+            ok:true,
+            palabra:respuesta[0]
+        });
+
+    }catch(error){
+
+        console.log(error);
         res.status(500).send(error);
 
     }
