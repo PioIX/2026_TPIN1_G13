@@ -323,4 +323,86 @@ app.get('/PalabraRandom', async function(req,res){
 
     }
 
+
+
+
+
+
+});
+//PEDIDOS ADMIN GESTION PARTIDAS
+
+
+
+app.get('/Partidas', async function(req,res){
+
+    try{
+
+        let respuesta;
+
+        if(req.query.id_partida){
+
+            respuesta = await realizarQuery(`
+                SELECT
+                    Partidas.*,
+                    Usuarios.usuario,
+                    Palabras.palabra
+                FROM Partidas
+                INNER JOIN Usuarios
+                    ON Partidas.id_usuario = Usuarios.id_usuario
+                INNER JOIN Palabras
+                    ON Partidas.id_palabra = Palabras.id_palabra
+                WHERE Partidas.id_partida = ${req.query.id_partida}
+            `);
+
+        }else{
+
+            respuesta = await realizarQuery(`
+                SELECT
+                    Partidas.*,
+                    Usuarios.usuario,
+                    Palabras.palabra
+                FROM Partidas
+                INNER JOIN Usuarios
+                    ON Partidas.id_usuario = Usuarios.id_usuario
+                INNER JOIN Palabras
+                    ON Partidas.id_palabra = Palabras.id_palabra
+                ORDER BY Partidas.fecha DESC
+            `);
+
+        }
+
+        res.send(respuesta);
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+app.delete('/Partidas', async function(req,res){
+
+    try{
+
+        await realizarQuery(`
+            DELETE FROM Partidas
+            WHERE id_partida = ${req.query.id_partida}
+        `);
+
+        res.send({
+
+            ok:true,
+
+            mensaje:"Partida eliminada"
+
+        });
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
 });

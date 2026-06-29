@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Gestión de Partidas</title>
+
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/panel_admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <video autoplay muted loop id="matrix-video">
+        <source src="/public/video_menu.mp4" type="video/mp4">
+    </video>
+
+    <div class="contenedor">
+
+        <h1>
+            GESTIÓN DE PARTIDAS
+        </h1>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>USUARIO</th>
+
+                    <th>PALABRA</th>
+
+                    <th>RESULTADO</th>
+
+                    <th>PUNTOS</th>
+
+                    <th>ERRORES</th>
+
+                    <th>PISTA</th>
+
+                    <th>FECHA</th>
+
+                    <th>ACCIÓN</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaPartidas">
+
+            </tbody>
+
+        </table>
+
+        <button id="btnVolver">
+            VOLVER
+        </button>
+
+    </div>
+
+    <script src="/frontend/scripts/admin_partidas.js"></script>
+
+</body>
+
+</html>
