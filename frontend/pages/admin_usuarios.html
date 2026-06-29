@@ -5,61 +5,85 @@
 
     <meta charset="UTF-8">
 
-    <title>Palabras de Categoría</title>
+    <title>Gestión Usuarios</title>
+
 
     <link rel="stylesheet" href="/frontend/styles/styles.css">
     <link rel="stylesheet" href="/frontend/styles/panel_admin.css">
     <link rel="stylesheet" href="/frontend/styles/admin_tablas.css">
 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
+
 </head>
+
 
 <body>
     <video autoplay muted loop id="matrix-video">
+
         <source src="/public/video_menu.mp4" type="video/mp4">
+
     </video>
 
-    <h1 id="tituloCategoria">
-            CATEGORÍA
-    </h1>
+
+    <h1 id="tituloUsuario">GESTIÓN DE USUARIOS</h1>
+
     <div class="contenedor">
+
 
         
 
-        <button id="btnAgregar">
-            + AGREGAR PALABRA
-        </button>
 
-        <table id="tablaPalabras">
+
+        <table>
+
 
             <thead>
 
                 <tr>
-                    <th>PALABRA</th>
-                    <th>DIFICULTAD</th>
-                    <th>PISTA</th>
+
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>USUARIO</th>
+                    <th>EMAIL</th>
+                    <th>PUNTAJE</th>
                     <th>ACCIONES</th>
+
                 </tr>
+
 
             </thead>
 
-            <tbody id="tablaPalabras">
+
+            <tbody id="tablaUsuarios">
+
 
             </tbody>
 
+
         </table>
 
+
         <button id="btnVolver">
+
             VOLVER
+
         </button>
+
 
     </div>
 
-    <script src="/frontend/scripts/admin_palabras_categoria.js"></script>
+
+
+    <script src="/frontend/scripts/admin_usuarios.js"></script>
+
 
 </body>
 

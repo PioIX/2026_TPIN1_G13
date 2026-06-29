@@ -1,0 +1,134 @@
+body{
+    overflow-y:auto;
+}
+
+
+/* Contenedor principal */
+.contenedor{
+
+    min-height:100vh;
+
+    padding:40px;
+
+}
+
+
+/* Tabla */
+table{
+
+    width:90%;
+
+    margin:30px auto;
+
+    border-collapse:separate;
+
+    border-spacing:20px 15px;
+
+}
+
+
+/* Encabezados */
+th{
+
+    text-align:center;
+
+    padding:15px;
+
+    font-size:1.2rem;
+
+}
+
+h1{
+
+    width:100%;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    margin-bottom:750px;
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    color:#8BFF6D;
+
+    text-shadow:
+        0 0 10px #39FF14,
+        0 0 20px #39FF14,
+        0 0 40px #39FF14;
+
+    letter-spacing:3px;
+
+}
+
+#tituloUsuario{
+    width:100%;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    margin-bottom:0px;
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    color:#8BFF6D;
+
+    text-shadow:
+        0 0 10px #39FF14,
+        0 0 20px #39FF14,
+        0 0 40px #39FF14;
+
+    letter-spacing:3px;
+}
+
+#tablaPalabras{
+    position:relative;
+    top:20px;
+}
+
+/* Celdas */
+td{
+
+    text-align:center;
+
+    padding:15px;
+
+    background:rgba(0,0,0,0.6);
+
+    border-radius:10px;
+
+}
+
+
+/* botones acciones */
+td button{
+
+    margin:5px;
+
+    padding:10px 15px;
+
+    border:2px solid #39FF14;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:#8BFF6D;
+
+    cursor:pointer;
+
+}
+
+
+td button:hover{
+
+    background:#39FF14;
+
+    color:black;
+
+}
