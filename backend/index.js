@@ -408,14 +408,31 @@ app.get('/Partidas', async function(req,res){
 
             respuesta = await realizarQuery(`
                 SELECT
-                    Partidas.*,
-                    Usuarios.usuario,
-                    Palabras.palabra
+
+                    Partidas.id_partida,
+
+                    Usuarios.usuario AS usuario,
+
+                    Palabras.palabra AS palabra,
+
+                    Partidas.resultado,
+
+                    Partidas.puntos_ganados,
+
+                    Partidas.errores,
+
+                    Partidas.uso_pista,
+
+                    Partidas.fecha
+
                 FROM Partidas
+
                 INNER JOIN Usuarios
                     ON Partidas.id_usuario = Usuarios.id_usuario
+
                 INNER JOIN Palabras
                     ON Partidas.id_palabra = Palabras.id_palabra
+
                 WHERE Partidas.id_partida = ${req.query.id_partida}
             `);
 
@@ -423,14 +440,31 @@ app.get('/Partidas', async function(req,res){
 
             respuesta = await realizarQuery(`
                 SELECT
-                    Partidas.*,
-                    Usuarios.usuario,
-                    Palabras.palabra
+
+                    Partidas.id_partida,
+
+                    Usuarios.usuario AS usuario,
+
+                    Palabras.palabra AS palabra,
+
+                    Partidas.resultado,
+
+                    Partidas.puntos_ganados,
+
+                    Partidas.errores,
+
+                    Partidas.uso_pista,
+
+                    Partidas.fecha
+
                 FROM Partidas
+
                 INNER JOIN Usuarios
                     ON Partidas.id_usuario = Usuarios.id_usuario
+
                 INNER JOIN Palabras
                     ON Partidas.id_palabra = Palabras.id_palabra
+
                 ORDER BY Partidas.fecha DESC
             `);
 
