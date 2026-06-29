@@ -166,3 +166,75 @@ async function eliminarPalabra(id) {
     cargarPalabras();//llamo a esta funcion para refrescar la tabla (vuelve a hacer el GET)
 
 }
+
+
+async function editarPalabra(id) {
+
+    // Obtener los datos actuales de la palabra
+
+    const respuesta = await fetch(
+        `http://localhost:4000/Palabras?id_palabra=${id}`
+    );
+
+    const palabraActual = (await respuesta.json())[0];
+
+    // Pedir los nuevos valores
+
+    const palabra = prompt(
+        "Palabra:",
+        palabraActual.palabra
+    );
+
+    if (palabra == null) return;
+
+    const pista = prompt(
+        "Pista:",
+        palabraActual.pista
+    );
+
+    if (pista == null) return;
+
+    const dificultad = prompt(
+        "Dificultad (1,2,3):",
+        palabraActual.dificultad
+    );
+
+    if (dificultad == null) return;
+
+    // Enviar actualización
+
+    const respuestaPut = await fetch(
+
+        `http://localhost:4000/Palabras/${id}`,
+
+        {
+
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                id_categoria: idCategoria,
+
+                palabra: palabra.toUpperCase(),
+
+                pista: pista.toUpperCase(),
+
+                dificultad
+
+            })
+
+        }
+
+    );
+
+    const datos = await respuestaPut.json();
+
+    alert(datos.mensaje);
+
+    cargarPalabras();
+
+}z
