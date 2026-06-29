@@ -1,3 +1,11 @@
+let pistaActual = "";
+let usoPista = false;
+let letrasUsadas = [];
+
+document
+    .querySelector("#btnPista")
+    .addEventListener("click", usarPista);
+
 console.log("Juego iniciado");
 
 let palabraActual = "";
@@ -8,27 +16,54 @@ document
     .querySelector("#btnIntentar")
     .addEventListener("click", intentarLetra);
 
-async function obtenerPalabra(idCategoria){
+// Obtener la categoría elegida en la pantalla anterior
+const categoria = localStorage.getItem("categoria");
 
-    try{
+// Cargar la primera palabra
+obtenerPalabra(categoria);
+
+async function obtenerPalabra(idCategoria) {
+
+    try {
 
         const respuesta = await fetch(
             `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}`
         );
 
-        const palabra = await respuesta.json();
+        const datos = await respuesta.json();
+
+        if (!datos.ok) {
+
+            alert(datos.mensaje);
+            return;
+
+        }
 
         console.log("Palabra recibida:");
-        console.log(palabra);
+        console.log(datos.palabra);
 
-        palabraActual = palabra.palabra.toUpperCase();
+        palabraActual = datos.palabra.palabra.toUpperCase();
 
-        mostrarPista(palabra.pista);
+        vidas = 3;
+
+        document.querySelector("#vidas").textContent =
+            "❤️❤️❤️";
+
+        pistaActual = datos.palabra.pista;
+        usoPista = false;
+
+        document.querySelector("#pista").textContent =
+            "Pista: --------";
 
         inicializarPalabra();
 
+        letrasUsadas = [];
+
+        document.querySelector("#letrasUsadas").textContent =
+            "Letras usadas:";
+
     }
-    catch(error){
+    catch (error) {
 
         console.error("Error al obtener palabra:", error);
 
@@ -36,25 +71,25 @@ async function obtenerPalabra(idCategoria){
 
 }
 
-function mostrarPista(pista){
+function mostrarPista(pista) {
 
     document.querySelector("#pista").textContent =
         `Pista: ${pista}`;
 
 }
 
-function inicializarPalabra(){
+function inicializarPalabra() {
 
     palabraMostrada = [];
 
-    for(let i = 0; i < palabraActual.length; i++){
+    for (let i = 0; i < palabraActual.length; i++) {
 
-        if(palabraActual[i] === " "){
+        if (palabraActual[i] === " ") {
 
             palabraMostrada.push(" ");
 
         }
-        else{
+        else {
 
             palabraMostrada.push("_");
 
@@ -66,23 +101,45 @@ function inicializarPalabra(){
 
 }
 
-function actualizarPalabra(){
+function actualizarPalabra() {
 
     document.querySelector("#palabra").textContent =
         palabraMostrada.join(" ");
 
 }
 
-function intentarLetra(){
+function intentarLetra() {
 
     let letra = document
         .querySelector("#letra")
         .value
         .toUpperCase();
 
+
+    if (letra === "") {
+
+        return;
+    }
+
+    if (letrasUsadas.includes(letra)) {
+
+        alert("Ya utilizaste esa letra.");
+
+        document.querySelector("#letra").value = "";
+
+        return;
+
+    }
+
+    letrasUsadas.push(letra);
+
+    document.querySelector("#letrasUsadas").textContent =
+        "Letras usadas: " +
+        letrasUsadas.join(" - ");
+
     document.querySelector("#letra").value = "";
 
-    if(letra === ""){
+    if (letra === "") {
 
         return;
 
@@ -90,9 +147,9 @@ function intentarLetra(){
 
     let encontrada = false;
 
-    for(let i = 0; i < palabraActual.length; i++){
+    for (let i = 0; i < palabraActual.length; i++) {
 
-        if(palabraActual[i] === letra){
+        if (palabraActual[i] === letra) {
 
             palabraMostrada[i] = letra;
 
@@ -102,12 +159,12 @@ function intentarLetra(){
 
     }
 
-    if(!encontrada){
+    if (!encontrada) {
 
         vidas--;
 
         document.querySelector("#vidas").textContent =
-            `Vidas: ${vidas}`;
+            `Vidas: ${"❤️".repeat(vidas)}`;
 
     }
 
@@ -115,4 +172,18 @@ function intentarLetra(){
 
 }
 
-obtenerPalabra(3);
+function usarPista() {
+
+    if (usoPista) {
+
+        alert("La pista ya fue utilizada.");
+        return;
+
+    }
+
+    usoPista = true;
+
+    document.querySelector("#pista").textContent =
+        `Pista: ${pistaActual}`;
+
+}

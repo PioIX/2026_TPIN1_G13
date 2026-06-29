@@ -1,61 +1,43 @@
-/*document
-    .querySelector("#btnComenzar")
-    .addEventListener("click", () => {
+let categoriaSeleccionada = "";
 
-        const categoria =
-            document.querySelector("#categoria").value;
+const cards = document.querySelectorAll(".card");
 
-        localStorage.setItem(
-            "categoria",
-            categoria
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        cards.forEach(c =>
+            c.classList.remove("seleccionada")
         );
 
-        window.location.href =
-            "juego.html";
+        card.classList.add("seleccionada");
 
-    });*/
-
-    document
-    .querySelectorAll(".card")
-    .forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            document
-                .querySelectorAll(".card")
-                .forEach(c =>
-                    c.classList.remove("seleccionada")
-                );
-
-            card.classList.add("seleccionada");
-
-            document
-                .querySelector("#categoria")
-                .value =
-                    card.dataset.id;
-
-        });
+        categoriaSeleccionada =
+            card.dataset.id;
 
     });
+
+});
 
 document
     .querySelector("#btnComenzar")
-    .addEventListener("click", () => {
+    .addEventListener("click", comenzarPartida);
 
-        const categoria =
-            document.querySelector("#categoria").value;
+function comenzarPartida(){
 
-        if(categoria === ""){
-            alert("Seleccioná una categoría");
-            return;
-        }
+    if(categoriaSeleccionada === ""){
 
-        localStorage.setItem(
-            "categoria",
-            categoria
-        );
+        alert("Seleccione una categoría.");
+        return;
 
-        window.location.href =
-            "juego.html";
+    }
 
-    });
+    localStorage.setItem(
+        "categoria",
+        categoriaSeleccionada
+    );
+
+    window.location.href =
+        "juego.html";
+
+}
