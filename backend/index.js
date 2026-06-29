@@ -292,6 +292,71 @@ app.delete('/Palabras', async function(req,res){
 
 });
 
+
+
+//PEDIDOS GESTION DE USERS
+app.get('/Usuarios', async function(req,res){
+
+    try{
+
+        let respuesta;
+
+        if(req.query.id_usuario != undefined){
+
+            respuesta = await realizarQuery(`
+                SELECT *
+                FROM Usuarios
+                WHERE id_usuario = ${req.query.id_usuario}
+            `);
+
+        }else{
+
+            respuesta = await realizarQuery(`
+                SELECT *
+                FROM Usuarios
+            `);
+
+        }
+
+        res.send(respuesta);
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+app.delete('/Usuarios', async function(req,res){
+
+    try{
+
+        await realizarQuery(`
+            DELETE FROM Partidas
+            WHERE id_usuario = ${req.query.id_usuario}
+        `);
+
+        await realizarQuery(`
+            DELETE FROM Usuarios
+            WHERE id_usuario = ${req.query.id_usuario}
+        `);
+
+        res.send({
+            ok:true,
+            mensaje:"Usuario eliminado"
+        });
+
+    }catch(error){
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
 // FUNCIONAMIENTO DEL JUEGO
 app.get('/PalabraRandom', async function(req,res){
 
