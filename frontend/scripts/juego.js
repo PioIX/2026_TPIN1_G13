@@ -8,6 +8,43 @@ let palabraMostrada = [];
 let vidas = 3;
 let ronda = 1;
 
+const letras = [
+    "A","B","C","D","E","F","G",
+    "H","I","J","K","L","M","N",
+    "O","P","Q","R","S","T","U",
+    "V","W","X","Y","Z"
+];
+
+crearTeclado();
+
+function crearTeclado(){
+
+    const teclado =
+    document.querySelector("#teclado");
+
+    teclado.innerHTML = "";
+
+
+    letras.forEach(letra => {
+
+        let boton =
+        document.createElement("button");
+
+        boton.textContent = letra;
+
+        boton.classList.add("tecla");
+
+        boton.addEventListener("click", () => {
+            if(boton.classList.contains("usada")){
+                return;
+            }
+            boton.classList.add("usada");
+            intentarLetra(boton.textContent);
+        });
+        teclado.appendChild(boton);
+    });
+}
+
 // Categoría elegida
 const categoria = localStorage.getItem("categoria");
 
@@ -50,6 +87,7 @@ async function obtenerPalabra(idCategoria){
         vidas = 3;
 
         letrasUsadas = [];
+        crearTeclado();
 
         document.querySelector("#vidas").textContent =
             "❤️❤️❤️";
@@ -138,7 +176,7 @@ function actualizarPalabra(){
 
         if(palabraMostrada[i]==" "){
 
-            texto += "     ";
+            texto += "ㅤ";
 
         }
 
@@ -155,27 +193,11 @@ function actualizarPalabra(){
 
 }
 
-function intentarLetra(){
-
-    let letra =
-        document.querySelector("#letra")
-        .value
-        .toUpperCase();
-
-    document.querySelector("#letra").value = "";
-
-    if(letra==""){
-
-        return;
-
-    }
+function intentarLetra(letra){
+    letra = letra.toUpperCase();
 
     if(letrasUsadas.includes(letra)){
-
-        alert("Ya utilizaste esa letra.");
-
         return;
-
     }
 
     letrasUsadas.push(letra);
@@ -187,41 +209,25 @@ function intentarLetra(){
     let encontrada = false;
 
     for(let i=0;i<palabraActual.length;i++){
-
         if(palabraActual[i]==letra){
-
             palabraMostrada[i]=letra;
-
             encontrada = true;
-
         }
-
     }
 
     if(!encontrada){
-
         vidas--;
-
         document.querySelector("#vidas").textContent =
             "❤️".repeat(vidas);
-
         if(vidas==0){
-
             setTimeout(() => {
-
                 alert("Perdiste la ronda.");
-
                 pasarRonda();
-
             },300);
-
             return;
-
         }
-
+        actualizarPalabra();
     }
-
-    actualizarPalabra();
 
     if(
         palabraMostrada.join("")
