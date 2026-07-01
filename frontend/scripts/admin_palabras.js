@@ -15,7 +15,7 @@ document
     });
 
 document
-    .querySelector("#btnVolver")
+    .querySelector("#btnVolverPanel")
     .addEventListener("click", () => {
 
         window.location.href =
