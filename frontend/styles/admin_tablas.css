@@ -5,10 +5,7 @@ body{
 
 /* Contenedor principal */
 .contenedor{
-
     min-height:100vh;
-
-    padding:40px;
 
     display:flex;
 
@@ -20,6 +17,7 @@ body{
 
     padding-top:80px;
 
+    margin-bottom: 1000px;
 }
 
 
@@ -55,8 +53,6 @@ h1{
     text-align:center;
 
     margin-top:20px;
-
-    margin-bottom:750px;
 
     font-size:5rem;
 
@@ -274,4 +270,56 @@ td button:hover{
         0 0 40px #39FF14;
 
     letter-spacing:3px;
+}
+
+#btnVolverPanel{
+    width:300px;
+
+    padding:15px 25px;
+    
+    margin-top:0px;
+
+    margin-bottom:0px;
+
+    border:3px solid #39FF14;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,0.6);
+
+    color:#8BFF6D;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    text-shadow:
+    0 0 5px #39FF14;
+
+}
+
+
+
+#btnVolverPanel:hover{
+
+    background:#39FF14;
+
+    color:black;
+
+    transform:scale(1.05);
+
+    box-shadow:
+    0 0 15px #39FF14,
+    0 0 30px #39FF14;
+
+}
+
+.admin_palabras{
+    overflow:hidden;
 }
