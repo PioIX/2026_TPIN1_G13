@@ -9,18 +9,25 @@ let vidas = 3;
 let ronda = 1;
 
 const letras = [
-    "A","B","C","D","E","F","G",
-    "H","I","J","K","L","M","N",
-    "O","P","Q","R","S","T","U",
-    "V","W","X","Y","Z"
+    "A", "B", "C", "D", "E", "F", "G",
+    "H", "I", "J", "K", "L", "M", "N",
+    "O", "P", "Q", "R", "S", "T", "U",
+    "V", "W", "X", "Y", "Z"
 ];
 
 crearTeclado();
 
-function crearTeclado(){
+function normalizar(texto) {
+    return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase();
+}
+
+function crearTeclado() {
 
     const teclado =
-    document.querySelector("#teclado");
+        document.querySelector("#teclado");
 
     teclado.innerHTML = "";
 
@@ -28,14 +35,14 @@ function crearTeclado(){
     letras.forEach(letra => {
 
         let boton =
-        document.createElement("button");
+            document.createElement("button");
 
         boton.textContent = letra;
 
         boton.classList.add("tecla");
 
         boton.addEventListener("click", () => {
-            if(boton.classList.contains("usada")){
+            if (boton.classList.contains("usada")) {
                 return;
             }
             boton.classList.add("usada");
@@ -52,24 +59,34 @@ document
     .querySelector("#btnPista")
     .addEventListener("click", usarPista);
 
-document
-    .querySelector("#btnIntentar")
-    .addEventListener("click", intentarLetra);
-
 // Cargar primera palabra
 obtenerPalabra(categoria);
 
-async function obtenerPalabra(idCategoria){
+async function obtenerPalabra(idCategoria) {
 
-    try{
+    if (!idCategoria) {
+        mostrarCategoria();
+        document.querySelector("#pista").textContent =
+            "Pista: --------";
+        document.querySelector("#letrasUsadas").textContent =
+            "Letras usadas:";
+        document.querySelector("#vidas").textContent =
+            "❤️❤️❤️";
+        alert("No se ha seleccionado ninguna categoría. Regresa a la pantalla de selección.");
+        return;
+    }
+
+    try {
 
         const respuesta = await fetch(
             `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}`
         );
 
         const datos = await respuesta.json();
+        console.log(datos);
+        console.log(datos.palabra);
 
-        if(!datos.ok){
+        if (!datos.ok) {
 
             alert(datos.mensaje);
             return;
@@ -80,7 +97,7 @@ async function obtenerPalabra(idCategoria){
             datos.palabra.palabra.toUpperCase();
 
         pistaActual =
-            datos.palabra.pista;
+            datos.palabra.pista || "";
 
         usoPista = false;
 
@@ -107,7 +124,7 @@ async function obtenerPalabra(idCategoria){
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
@@ -115,11 +132,11 @@ async function obtenerPalabra(idCategoria){
 
 }
 
-function mostrarCategoria(idCategoria){
+function mostrarCategoria(idCategoria) {
 
-    let nombre = "";
+    let nombre = "Sin categoría";
 
-    switch(Number(idCategoria)){
+    switch (Number(idCategoria)) {
 
         case 1:
             nombre = "Series y Películas";
@@ -144,19 +161,19 @@ function mostrarCategoria(idCategoria){
 
 }
 
-function inicializarPalabra(){
+function inicializarPalabra() {
 
     palabraMostrada = [];
 
-    for(let i=0;i<palabraActual.length;i++){
+    for (let i = 0; i < palabraActual.length; i++) {
 
-        if(palabraActual[i]==" "){
+        if (palabraActual[i] == " ") {
 
             palabraMostrada.push(" ");
 
         }
 
-        else{
+        else {
 
             palabraMostrada.push("_");
 
@@ -168,24 +185,22 @@ function inicializarPalabra(){
 
 }
 
-function actualizarPalabra(){
+function actualizarPalabra() {
 
     let texto = "";
 
-    for(let i=0;i<palabraMostrada.length;i++){
+    for (let i = 0; i < palabraMostrada.length; i++) {
 
-        if(palabraMostrada[i]==" "){
+        if (palabraMostrada[i] == " ") {
 
-            texto += "ㅤ";
+            texto += "  ";
 
         }
-
-        else{
+        else {
 
             texto += palabraMostrada[i] + " ";
 
         }
-
     }
 
     document.querySelector("#palabra").textContent =
@@ -193,10 +208,11 @@ function actualizarPalabra(){
 
 }
 
-function intentarLetra(letra){
+function intentarLetra(letra) {
     letra = letra.toUpperCase();
+    const letraNormalizada = normalizar(letra);
 
-    if(letrasUsadas.includes(letra)){
+    if (letrasUsadas.includes(letra)) {
         return;
     }
 
@@ -208,32 +224,35 @@ function intentarLetra(letra){
 
     let encontrada = false;
 
-    for(let i=0;i<palabraActual.length;i++){
-        if(palabraActual[i]==letra){
-            palabraMostrada[i]=letra;
+    for (let i = 0; i < palabraActual.length; i++) {
+        const caracterActual = palabraActual[i];
+
+        if (normalizar(caracterActual) === letraNormalizada) {
+            palabraMostrada[i] = caracterActual;
             encontrada = true;
         }
     }
 
-    if(!encontrada){
+    if (!encontrada) {
         vidas--;
         document.querySelector("#vidas").textContent =
             "❤️".repeat(vidas);
-        if(vidas==0){
+        if (vidas == 0) {
             setTimeout(() => {
                 alert("Perdiste la ronda.");
                 pasarRonda();
-            },300);
+            }, 300);
             return;
         }
-        actualizarPalabra();
-    }
 
-    if(
+    }
+    actualizarPalabra();
+
+    if (
         palabraMostrada.join("")
         ==
         palabraActual
-    ){
+    ) {
 
         setTimeout(() => {
 
@@ -241,17 +260,17 @@ function intentarLetra(letra){
 
             pasarRonda();
 
-        },300);
+        }, 300);
 
     }
 
 }
 
-async function pasarRonda(){
+async function pasarRonda() {
 
     ronda++;
 
-    if(ronda>10){
+    if (ronda > 10) {
 
         terminarPartida();
 
@@ -263,15 +282,15 @@ async function pasarRonda(){
 
 }
 
-function terminarPartida(){
+function terminarPartida() {
 
     alert("Partida terminada.");
 
 }
 
-function usarPista(){
+function usarPista() {
 
-    if(usoPista){
+    if (usoPista) {
 
         alert("La pista ya fue utilizada.");
 
