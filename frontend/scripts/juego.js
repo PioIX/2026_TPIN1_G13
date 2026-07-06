@@ -4,6 +4,7 @@ let letrasUsadas = [];
 
 let palabraActual = "";
 let palabraMostrada = [];
+let dificultadActual = 1;
 
 let vidas = 3;
 let ronda = 1;
@@ -94,7 +95,10 @@ async function obtenerPalabra(idCategoria) {
         }
 
         palabraActual =
-            datos.palabra.palabra.toUpperCase();
+            datos.palabra.palabra.trim().toUpperCase();
+
+        dificultadActual =
+            datos.palabra.dificultad;
 
         pistaActual =
             datos.palabra.pista || "";
@@ -193,23 +197,24 @@ function actualizarPalabra() {
 
         if (palabraMostrada[i] == " ") {
 
-            texto += "  ";
+            texto += "&nbsp;&nbsp;&nbsp;&nbsp;";
 
         }
         else {
 
-            texto += palabraMostrada[i] + " ";
+            texto += palabraMostrada[i] + "&nbsp;";
 
         }
     }
 
-    document.querySelector("#palabra").textContent =
-        texto;
+    document.querySelector("#palabra").innerHTML = texto;
 
 }
 
 function intentarLetra(letra) {
+
     letra = letra.toUpperCase();
+
     const letraNormalizada = normalizar(letra);
 
     if (letrasUsadas.includes(letra)) {
@@ -219,44 +224,62 @@ function intentarLetra(letra) {
     letrasUsadas.push(letra);
 
     document.querySelector("#letrasUsadas").textContent =
-        "Letras usadas: " +
-        letrasUsadas.join(" - ");
+        "Letras usadas: " + letrasUsadas.join(" - ");
 
     let encontrada = false;
 
     for (let i = 0; i < palabraActual.length; i++) {
+
         const caracterActual = palabraActual[i];
 
-        if (normalizar(caracterActual) === letraNormalizada) {
+        if (normalizar(caracterActual) == letraNormalizada) {
+
             palabraMostrada[i] = caracterActual;
+
             encontrada = true;
+
         }
+
     }
 
     if (!encontrada) {
+
         vidas--;
+
         document.querySelector("#vidas").textContent =
             "❤️".repeat(vidas);
+
         if (vidas == 0) {
+
             setTimeout(() => {
+
+                perderRonda();
+
                 alert("Perdiste la ronda.");
+
                 pasarRonda();
+
             }, 300);
-            return;
+
         }
 
+        return;
+
     }
+
     actualizarPalabra();
 
-    if (
-        palabraMostrada.join("")
-        ==
-        palabraActual
-    ) {
+    if (palabraMostrada.join("") == palabraActual) {
+
+        const puntos =
+            ganarRonda(dificultadActual);
 
         setTimeout(() => {
 
-            alert("¡Ganaste la ronda!");
+            alert(
+                "¡Ganaste la ronda!\n\n" +
+                "Puntos obtenidos: " + puntos
+            );
 
             pasarRonda();
 
@@ -279,12 +302,6 @@ async function pasarRonda() {
     }
 
     await obtenerPalabra(categoria);
-
-}
-
-function terminarPartida() {
-
-    alert("Partida terminada.");
 
 }
 
