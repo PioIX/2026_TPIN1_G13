@@ -1,7 +1,7 @@
 let pistaActual = "";
 let usoPista = false;
 let letrasUsadas = [];
-
+let palabrasUsadas = [];
 let palabraActual = "";
 let palabraMostrada = [];
 let dificultadActual = 1;
@@ -85,8 +85,12 @@ async function obtenerPalabra(idCategoria) {
 
     try {
 
+        const excluir = palabrasUsadas.join(",");
+
         const respuesta = await fetch(
-            `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}`
+
+            `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}&excluir=${excluir}`
+
         );
 
         const datos = await respuesta.json();
@@ -99,6 +103,9 @@ async function obtenerPalabra(idCategoria) {
             return;
 
         }
+
+        // Guardar la palabra para no repetirla
+        palabrasUsadas.push(datos.palabra.id_palabra);
 
         palabraActual =
             datos.palabra.palabra.trim().toUpperCase();
