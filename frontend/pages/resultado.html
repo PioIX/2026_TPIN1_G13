@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
     <meta charset="UTF-8">
 
-    <title>Resultado</title>
+    <title>Resultado de la Partida</title>
 
     <link rel="stylesheet" href="/frontend/styles/styles.css">
     <link rel="stylesheet" href="/frontend/styles/resultado.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -18,23 +20,65 @@
 
 <body>
 
-    <div class="contenedor-resultado">
+    <video autoplay muted loop id="matrix-video">
+        <source src="/public/video_menu.mp4" type="video/mp4">
+    </video>
 
-        <h1>PARTIDA TERMINADA</h1>
+    <div class="contenedor">
 
-        <div class="trofeo">
-            🏆
-        </div>
+        <h1 id="tituloResultado">
+            RESULTADO
+        </h1>
 
-        <div id="puntajeFinal">
-            Puntaje: 0
+        <h2 id="mensajeResultado">
+            ---
+        </h2>
+
+        <div class="estadisticas">
+
+            <div class="dato">
+
+                <span>Puntaje Final</span>
+
+                <strong id="puntajeFinal">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="dato">
+
+                <span>Rondas Ganadas</span>
+
+                <strong id="ganadas">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="dato">
+
+                <span>Rondas Perdidas</span>
+
+                <strong id="perdidas">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="dato">
+
+                <span>Objetivo</span>
+
+                <strong>
+                    2000 pts
+                </strong>
+
+            </div>
+
         </div>
 
         <div class="botones">
-
-            <button id="btnReiniciar">
-                JUGAR DE NUEVO
-            </button>
 
             <button id="btnMenu">
                 VOLVER AL MENÚ
@@ -44,11 +88,17 @@
                 VER RANKING
             </button>
 
+            <button id="btnJugarOtra">
+                JUGAR OTRA PARTIDA
+            </button>
+
         </div>
 
     </div>
 
     <script src="/frontend/scripts/resultado.js"></script>
+    <script src="/frontend/scripts/puntaje.js"></script>
 
 </body>
+
 </html>

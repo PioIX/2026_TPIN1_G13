@@ -476,11 +476,21 @@ app.get('/PalabraRandom', async function(req,res){
 
     try{
 
+        let excluir = "";
+
+        if(req.query.excluir){
+
+            excluir =
+                `AND id_palabra NOT IN (${req.query.excluir})`;
+
+        }
+
         const respuesta = await realizarQuery(`
 
             SELECT *
             FROM Palabras
             WHERE id_categoria = ${req.query.id_categoria}
+            ${excluir}
             ORDER BY RAND()
             LIMIT 1
 
@@ -490,7 +500,7 @@ app.get('/PalabraRandom', async function(req,res){
 
             return res.send({
                 ok:false,
-                mensaje:"No hay palabras para esta categoría."
+                mensaje:"No hay más palabras disponibles."
             });
 
         }

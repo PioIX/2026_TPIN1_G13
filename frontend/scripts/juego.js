@@ -9,6 +9,8 @@ let dificultadActual = 1;
 let vidas = 3;
 let ronda = 1;
 
+
+
 const letras = [
     "A", "B", "C", "D", "E", "F", "G",
     "H", "I", "J", "K", "L", "M", "N",
@@ -125,6 +127,9 @@ async function obtenerPalabra(idCategoria) {
         mostrarCategoria(idCategoria);
 
         inicializarPalabra();
+
+        document.querySelector("#puntaje").textContent =
+            "Puntaje: " + puntajeTotal;
 
     }
 
@@ -255,7 +260,11 @@ function intentarLetra(letra) {
 
                 perderRonda();
 
-                alert("Perdiste la ronda.");
+                alert(
+                    "Perdiste la ronda.\n\n" +
+                    "La palabra era:\n" +
+                    palabraActual
+                );
 
                 pasarRonda();
 
@@ -321,3 +330,5 @@ function usarPista() {
         "Pista: " + pistaActual;
 
 }
+
+
