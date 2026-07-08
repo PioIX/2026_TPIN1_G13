@@ -10,15 +10,20 @@ let vidas = 3;
 let ronda = 1;
 
 const letras = [
-    "A", "B", "C", "D", "E", "F", "G",
-    "H", "I", "J", "K", "L", "M", "N",
-    "O", "P", "Q", "R", "S", "T", "U",
-    "V", "W", "X", "Y", "Z"
+    "Q", "W", "E", "R", "T", "Y", "U",
+    "I", "O", "P", "A", "S", "D", "F",
+    "G", "H", "J", "K", "L", "Z", "X",
+    "C", "V", "B", "N", "M"
 ];
 
 crearTeclado();
 
-function normalizar(texto) {
+function ponerTextoSiExiste(selector, text) {
+    const el = document.querySelector(selector);
+    if (el) el.textContent = text;
+}
+
+function normalizar(texto) {  // Función para normalizar texto eliminando acentos y convirtiendo a mayúsculas
     return texto
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -69,8 +74,7 @@ async function obtenerPalabra(idCategoria) {
         mostrarCategoria();
         document.querySelector("#pista").textContent =
             "Pista: --------";
-        document.querySelector("#letrasUsadas").textContent =
-            "Letras usadas:";
+        ponerTextoSiExiste("#letrasUsadas", "Letras usadas:");
         document.querySelector("#vidas").textContent =
             "❤️❤️❤️";
         alert("No se ha seleccionado ninguna categoría. Regresa a la pantalla de selección.");
@@ -100,6 +104,28 @@ async function obtenerPalabra(idCategoria) {
         dificultadActual =
             datos.palabra.dificultad;
 
+        let textoDificultad = "";
+
+        if (dificultadActual == 1) {
+
+            textoDificultad = "Fácil";
+
+        }
+        else if (dificultadActual == 2) {
+
+            textoDificultad = "Media";
+
+        }
+        else {
+
+            textoDificultad = "Difícil";
+
+        }
+
+        document.querySelector("#dificultad").textContent =
+            "Dificultad: " + textoDificultad;
+
+
         pistaActual =
             datos.palabra.pista || "";
 
@@ -116,8 +142,7 @@ async function obtenerPalabra(idCategoria) {
         document.querySelector("#pista").textContent =
             "Pista: --------";
 
-        document.querySelector("#letrasUsadas").textContent =
-            "Letras usadas:";
+        ponerTextoSiExiste("#letrasUsadas", "Letras usadas:");
 
         document.querySelector("#ronda").textContent =
             `Ronda ${ronda} / 10`;
@@ -223,8 +248,7 @@ function intentarLetra(letra) {
 
     letrasUsadas.push(letra);
 
-    document.querySelector("#letrasUsadas").textContent =
-        "Letras usadas: " + letrasUsadas.join(" - ");
+    ponerTextoSiExiste("#letrasUsadas", "Letras usadas: " + letrasUsadas.join(" - "));
 
     let encontrada = false;
 
