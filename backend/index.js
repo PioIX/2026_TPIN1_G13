@@ -472,38 +472,63 @@ app.delete('/Partidas', async function(req,res){
 
 
 // FUNCIONAMIENTO DEL JUEGO
-app.get('/PalabraRandom', async function(req,res){
+app.get('/PalabraRandom', async function (req, res) {
 
-    try{
+    try {
+
+        let excluir = "";
+
+        if (
+            req.query.excluir &&
+            req.query.excluir.trim() !== ""
+        ) {
+
+            excluir = `
+                AND id_palabra NOT IN (${req.query.excluir})
+            `;
+
+        }
 
         const respuesta = await realizarQuery(`
 
             SELECT *
             FROM Palabras
             WHERE id_categoria = ${req.query.id_categoria}
+            ${excluir}
             ORDER BY RAND()
             LIMIT 1
 
         `);
 
-        if(respuesta.length == 0){
+        if (respuesta.length === 0) {
 
             return res.send({
-                ok:false,
-                mensaje:"No hay palabras para esta categoría."
+
+                ok: false,
+                mensaje: "No hay más palabras disponibles."
+
             });
 
         }
 
         res.send({
-            ok:true,
-            palabra:respuesta[0]
+
+            ok: true,
+            palabra: respuesta[0]
+
         });
 
-    }catch(error){
+    }
+    catch (error) {
 
         console.log(error);
-        res.status(500).send(error);
+
+        res.status(500).send({
+
+            ok: false,
+            mensaje: "Error interno del servidor."
+
+        });
 
     }
 

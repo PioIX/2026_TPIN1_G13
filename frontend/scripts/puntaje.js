@@ -1,23 +1,22 @@
-// Puntaje acumulado durante toda la partida
+// =========================
+// SISTEMA DE PUNTAJE
+// =========================
+
 let puntajeTotal = 0;
 
-// Cantidad de rondas ganadas
 let rondasGanadas = 0;
-
-// Cantidad de rondas perdidas
 let rondasPerdidas = 0;
 
-// Resultado final de la partida
-let resultadoPartida = "";
+const PUNTAJE_OBJETIVO = 2000;
 
-/*
-Devuelve el puntaje base de una palabra
-según su dificultad.
-*/
+
+// =========================
+// PUNTAJE BASE
+// =========================
 
 function obtenerPuntajeBase(dificultad) {
 
-    switch (dificultad) {
+    switch (Number(dificultad)) {
 
         case 1:
             return 100;
@@ -35,20 +34,19 @@ function obtenerPuntajeBase(dificultad) {
 
 }
 
-/*
-Calcula el puntaje obtenido
-en una ronda.
 
-Parámetros:
+// =========================
+// CALCULAR PUNTOS
+// =========================
 
-- dificultad
-- vidas restantes
-- si usó pista
-*/
+function calcularPuntaje(
+    dificultad,
+    vidas,
+    usoPista
+) {
 
-function calcularPuntaje(dificultad, vidas, usoPista) {
-
-    let puntos = obtenerPuntajeBase(dificultad);
+    let puntos =
+        obtenerPuntajeBase(dificultad);
 
     // Bonus por vidas
 
@@ -66,10 +64,10 @@ function calcularPuntaje(dificultad, vidas, usoPista) {
 
 }
 
-/*
-Se ejecuta únicamente
-cuando el jugador adivina la palabra.
-*/
+
+// =========================
+// GANAR RONDA
+// =========================
 
 function ganarRonda(dificultad) {
 
@@ -91,10 +89,10 @@ function ganarRonda(dificultad) {
 
 }
 
-/*
-Si pierde una ronda
-no suma puntos.
-*/
+
+// =========================
+// PERDER RONDA
+// =========================
 
 function perderRonda() {
 
@@ -103,48 +101,39 @@ function perderRonda() {
 }
 
 
+// =========================
+// FINALIZAR PARTIDA
+// =========================
+
 function terminarPartida() {
 
-    resultadoPartida = "";
+    const usuario =
+        JSON.parse(
+            localStorage.getItem("usuario")
+        );
 
-    if (rondasGanadas > rondasPerdidas) {
+    localStorage.setItem(
 
-        resultadoPartida = "Victoria";
+        "resultadoPartida",
 
-    }
-    else if (rondasGanadas < rondasPerdidas) {
+        JSON.stringify({
 
-        resultadoPartida = "Derrota";
+            usuario: usuario.usuario,
 
-    }
-    else {
+            puntaje: puntajeTotal,
 
-        resultadoPartida = "Empate";
+            victoria:
+                puntajeTotal >= PUNTAJE_OBJETIVO,
 
-    }
-    alert(
+            rondasGanadas,
 
-        "Partida terminada\n\n" +
+            rondasPerdidas
 
-        "Puntaje: " + puntajeTotal +
-
-        "\nGanadas: " + rondasGanadas +
-
-        "\nPerdidas: " + rondasPerdidas +
-
-        "\nResultado: " + resultadoPartida
+        })
 
     );
 
-    return {
+    window.location.href =
+        "/frontend/pages/resultado.html";
 
-        puntaje: puntajeTotal,
-
-        ganadas: rondasGanadas,
-
-        perdidas: rondasPerdidas,
-
-        resultado: resultadoPartida
-
-    }
 }

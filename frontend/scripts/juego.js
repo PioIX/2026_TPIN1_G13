@@ -1,13 +1,15 @@
 let pistaActual = "";
 let usoPista = false;
 let letrasUsadas = [];
-
+let palabrasUsadas = [];
 let palabraActual = "";
 let palabraMostrada = [];
 let dificultadActual = 1;
 
 let vidas = 3;
 let ronda = 1;
+
+
 
 const letras = [
     "Q", "W", "E", "R", "T", "Y", "U",
@@ -83,8 +85,12 @@ async function obtenerPalabra(idCategoria) {
 
     try {
 
+        const excluir = palabrasUsadas.join(",");
+
         const respuesta = await fetch(
-            `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}`
+
+            `http://localhost:4000/PalabraRandom?id_categoria=${idCategoria}&excluir=${excluir}`
+
         );
 
         const datos = await respuesta.json();
@@ -97,6 +103,9 @@ async function obtenerPalabra(idCategoria) {
             return;
 
         }
+
+        // Guardar la palabra para no repetirla
+        palabrasUsadas.push(datos.palabra.id_palabra);
 
         palabraActual =
             datos.palabra.palabra.trim().toUpperCase();
@@ -150,6 +159,9 @@ async function obtenerPalabra(idCategoria) {
         mostrarCategoria(idCategoria);
 
         inicializarPalabra();
+
+        document.querySelector("#puntaje").textContent =
+            "Puntaje: " + puntajeTotal;
 
     }
 
@@ -279,7 +291,11 @@ function intentarLetra(letra) {
 
                 perderRonda();
 
-                alert("Perdiste la ronda.");
+                alert(
+                    "Perdiste la ronda.\n\n" +
+                    "La palabra era:\n" +
+                    palabraActual
+                );
 
                 pasarRonda();
 
@@ -345,3 +361,5 @@ function usarPista() {
         "Pista: " + pistaActual;
 
 }
+
+
