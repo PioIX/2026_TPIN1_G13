@@ -6,6 +6,10 @@ let puntajeTotal = 0;
 
 let rondasGanadas = 0;
 let rondasPerdidas = 0;
+let ultimoResultado = "";
+let ultimoPuntajeRonda = 0;
+let ultimoUsoPista = false;
+let ultimoErrores = 0;
 
 const PUNTAJE_OBJETIVO = 2000;
 
@@ -82,8 +86,15 @@ function ganarRonda(dificultad) {
 
     rondasGanadas++;
 
+    ultimoResultado = "GANO";
+    ultimoPuntajeRonda = puntosRonda;
+    ultimoUsoPista = usoPista;
+    ultimoErrores = errores;
+
     document.querySelector("#puntaje").textContent =
         "Puntaje: " + puntajeTotal;
+
+    guardarRonda();
 
     return puntosRonda;
 
@@ -98,14 +109,63 @@ function perderRonda() {
 
     rondasPerdidas++;
 
+    ultimoResultado = "PERDIO";
+    ultimoPuntajeRonda = 0;
+    ultimoUsoPista = usoPista;
+    ultimoErrores = errores;
+
+    guardarRonda();
+
 }
+
+async function guardarRonda() {
+
+    const usuario =
+        JSON.parse(
+            localStorage.getItem("usuario")
+        );
+
+    await fetch(
+        "http://localhost:4000/GuardarRonda",
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                id_usuario: usuario.id_usuario,
+
+                id_palabra: idPalabraActual,
+
+                uso_pista: ultimoUsoPista,
+
+                errores: ultimoErrores,
+
+                puntos_ganados: ultimoPuntajeRonda,
+
+                resultado: ultimoResultado
+
+            })
+
+        }
+
+    );
+
+}
+
 
 
 // =========================
 // FINALIZAR PARTIDA
 // =========================
 
-function terminarPartida() {
+async function terminarPartida() {
+
+    console.log("ENTRÉ A terminarPartida");
 
     const usuario =
         JSON.parse(
@@ -132,6 +192,26 @@ function terminarPartida() {
         })
 
     );
+
+    await fetch("http://localhost:4000/FinalizarPartida", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+            id_usuario: usuario.id_usuario,
+
+            puntaje: puntajeTotal,
+
+            victoria: puntajeTotal >= PUNTAJE_OBJETIVO
+
+        })
+
+    });
 
     window.location.href =
         "/frontend/pages/resultado.html";
