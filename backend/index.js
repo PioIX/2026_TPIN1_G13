@@ -7,16 +7,16 @@ var app = express();
 var port = process.env.PORT || 4000;
 
 // Convierte una petición recibida (POST-GET...) a objeto JSON
-app.use(bodyParser.urlencoded({ extended:false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 // Pongo el servidor a escuchar
-app.listen(port, function(){
+app.listen(port, function () {
     console.log(`Server running in http://localhost:${port}`);
 });
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
     res.status(200).send({
         message: 'GET Home route working fine!'
     });
@@ -158,13 +158,13 @@ app.post('/Login', async (req, res) => {
 
 
 // gestion palabras
-app.get('/Palabras', async function(req,res){
+app.get('/Palabras', async function (req, res) {
 
-    try{
+    try {
 
         let respuesta;
 
-        if(req.query.id_palabra){
+        if (req.query.id_palabra) {
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -173,7 +173,7 @@ app.get('/Palabras', async function(req,res){
             `);
 
         }
-        else if(req.query.id_categoria){
+        else if (req.query.id_categoria) {
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -183,7 +183,7 @@ app.get('/Palabras', async function(req,res){
             `);
 
         }
-        else{
+        else {
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -195,7 +195,7 @@ app.get('/Palabras', async function(req,res){
 
         res.send(respuesta);
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -204,9 +204,9 @@ app.get('/Palabras', async function(req,res){
 });
 
 
-app.post('/Palabras', async function(req,res){
+app.post('/Palabras', async function (req, res) {
 
-    try{
+    try {
 
         console.log("DATOS RECIBIDOS:", req.body);
 
@@ -228,11 +228,11 @@ app.post('/Palabras', async function(req,res){
         `);
 
         res.send({
-            ok:true,
-            mensaje:"Palabra agregada"
+            ok: true,
+            mensaje: "Palabra agregada"
         });
 
-    }catch(error){
+    } catch (error) {
 
         console.error(error);
 
@@ -243,9 +243,9 @@ app.post('/Palabras', async function(req,res){
 });
 
 
-app.put('/Palabras/:id', async function(req,res){
+app.put('/Palabras/:id', async function (req, res) {
 
-    try{
+    try {
 
         await realizarQuery(`
             UPDATE Palabras
@@ -258,11 +258,11 @@ app.put('/Palabras/:id', async function(req,res){
         `);
 
         res.send({
-            ok:true,
-            mensaje:"Palabra actualizada"
+            ok: true,
+            mensaje: "Palabra actualizada"
         });
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -270,9 +270,9 @@ app.put('/Palabras/:id', async function(req,res){
 
 });
 
-app.delete('/Palabras', async function(req,res){
+app.delete('/Palabras', async function (req, res) {
 
-    try{
+    try {
 
         await realizarQuery(`
             DELETE FROM Palabras
@@ -280,11 +280,11 @@ app.delete('/Palabras', async function(req,res){
         `);
 
         res.send({
-            ok:true,
-            mensaje:"Palabra eliminada"
+            ok: true,
+            mensaje: "Palabra eliminada"
         });
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -295,13 +295,13 @@ app.delete('/Palabras', async function(req,res){
 
 
 //PEDIDOS GESTION DE USERS
-app.get('/Usuarios', async function(req,res){
+app.get('/Usuarios', async function (req, res) {
 
-    try{
+    try {
 
         let respuesta;
 
-        if(req.query.id_usuario != undefined){
+        if (req.query.id_usuario != undefined) {
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -309,7 +309,7 @@ app.get('/Usuarios', async function(req,res){
                 WHERE id_usuario = ${req.query.id_usuario}
             `);
 
-        }else{
+        } else {
 
             respuesta = await realizarQuery(`
                 SELECT *
@@ -320,7 +320,7 @@ app.get('/Usuarios', async function(req,res){
 
         res.send(respuesta);
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -329,9 +329,9 @@ app.get('/Usuarios', async function(req,res){
 });
 
 
-app.delete('/Usuarios', async function(req,res){
+app.delete('/Usuarios', async function (req, res) {
 
-    try{
+    try {
 
         await realizarQuery(`
             DELETE FROM Partidas
@@ -344,11 +344,11 @@ app.delete('/Usuarios', async function(req,res){
         `);
 
         res.send({
-            ok:true,
-            mensaje:"Usuario eliminado"
+            ok: true,
+            mensaje: "Usuario eliminado"
         });
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -362,13 +362,13 @@ app.delete('/Usuarios', async function(req,res){
 
 
 
-app.get('/Partidas', async function(req,res){
+app.get('/Partidas', async function (req, res) {
 
-    try{
+    try {
 
         let respuesta;
 
-        if(req.query.id_partida){
+        if (req.query.id_partida) {
 
             respuesta = await realizarQuery(`
                 SELECT
@@ -400,7 +400,7 @@ app.get('/Partidas', async function(req,res){
                 WHERE Partidas.id_partida = ${req.query.id_partida}
             `);
 
-        }else{
+        } else {
 
             respuesta = await realizarQuery(`
                 SELECT
@@ -436,7 +436,7 @@ app.get('/Partidas', async function(req,res){
 
         res.send(respuesta);
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -445,9 +445,9 @@ app.get('/Partidas', async function(req,res){
 });
 
 
-app.delete('/Partidas', async function(req,res){
+app.delete('/Partidas', async function (req, res) {
 
-    try{
+    try {
 
         await realizarQuery(`
             DELETE FROM Partidas
@@ -456,13 +456,13 @@ app.delete('/Partidas', async function(req,res){
 
         res.send({
 
-            ok:true,
+            ok: true,
 
-            mensaje:"Partida eliminada"
+            mensaje: "Partida eliminada"
 
         });
 
-    }catch(error){
+    } catch (error) {
 
         res.status(500).send(error);
 
@@ -529,6 +529,128 @@ app.get('/PalabraRandom', async function (req, res) {
             mensaje: "Error interno del servidor."
 
         });
+
+    }
+
+});
+
+
+app.post("/GuardarRonda", async function (req, res) {
+
+    try {
+
+        await realizarQuery(`
+
+            INSERT INTO Partidas (
+
+                id_usuario,
+                id_palabra,
+                uso_pista,
+                errores,
+                puntos_ganados,
+                resultado
+
+            )
+
+            VALUES (
+
+                ${req.body.id_usuario},
+                ${req.body.id_palabra},
+                ${req.body.uso_pista},
+                ${req.body.errores},
+                ${req.body.puntos_ganados},
+                '${req.body.resultado}'
+
+            )
+
+        `);
+
+        res.send({
+
+            ok: true,
+            mensaje: "Ronda guardada correctamente."
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+
+app.post("/FinalizarPartida", async function (req, res) {
+
+    try {
+
+        await realizarQuery(`
+
+            UPDATE Usuarios
+
+            SET
+
+                puntaje = puntaje + ${req.body.puntaje},
+
+                victorias = victorias + ${req.body.victoria ? 1 : 0},
+
+                derrotas = derrotas + ${req.body.victoria ? 0 : 1},
+
+                partidas_jugadas = partidas_jugadas + 1
+
+            WHERE id_usuario = ${req.body.id_usuario}
+
+        `);
+
+        res.send({
+
+            ok: true,
+            mensaje: "Partida finalizada correctamente."
+
+        });
+
+    }
+
+    catch (error) {
+
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+app.get("/Ranking", async function (req, res) {
+
+    try {
+
+        const respuesta = await realizarQuery(`
+
+            SELECT
+
+                usuario,
+
+                puntaje
+
+            FROM Usuarios
+
+            ORDER BY puntaje DESC
+
+        `);
+
+        res.send(respuesta);
+
+    }
+
+    catch (error) {
+
+        res.status(500).send(error);
 
     }
 

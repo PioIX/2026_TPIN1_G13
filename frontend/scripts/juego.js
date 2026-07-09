@@ -5,7 +5,8 @@ let palabrasUsadas = [];
 let palabraActual = "";
 let palabraMostrada = [];
 let dificultadActual = 1;
-
+let idPalabraActual = 0;
+let errores = 0;
 let vidas = 3;
 let ronda = 1;
 
@@ -109,6 +110,9 @@ async function obtenerPalabra(idCategoria) {
 
         palabraActual =
             datos.palabra.palabra.trim().toUpperCase();
+        
+
+        idPalabraActual = datos.palabra.id_palabra;
 
         dificultadActual =
             datos.palabra.dificultad;
@@ -280,6 +284,8 @@ function intentarLetra(letra) {
 
     if (!encontrada) {
 
+        errores++;
+
         vidas--;
 
         document.querySelector("#vidas").textContent =
@@ -333,7 +339,11 @@ async function pasarRonda() {
 
     ronda++;
 
+    console.log("Ronda:", ronda);
+
     if (ronda > 10) {
+
+        console.log("Voy a llamar a terminarPartida()");
 
         terminarPartida();
 
@@ -342,6 +352,8 @@ async function pasarRonda() {
     }
 
     await obtenerPalabra(categoria);
+
+    errores = 0;
 
 }
 
