@@ -4,7 +4,7 @@ repositorio proyecto interdisciplinario 1er cuatrimestre. Grupo 13
 
 ## Descripción
 
-**ERROR 67: Palabra no encontrada** es un juego web inspirado en el clásico Ahorcado, desarrollado con HTML, CSS, JavaScript, Node.js y MySQL.
+**ERROR 404: Palabra no encontrada** es un juego web inspirado en el clásico Ahorcado, desarrollado con HTML, CSS, JavaScript, Node.js y MySQL.
 
 El jugador debe iniciar sesión, seleccionar una categoría e intentar descubrir diez palabras ocultas antes de quedarse sin vidas. Cada palabra pertenece a una dificultad (Fácil, Media o Difícil), lo que influye en la cantidad de puntos obtenidos al completar la ronda.
 
