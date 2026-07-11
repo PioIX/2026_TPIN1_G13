@@ -28,7 +28,6 @@ Durante la partida es posible utilizar una pista para facilitar la resolución d
 - CSS3
 - JavaScript
 - Node.js
-- Express
 - MySQL
 
 ## Objetivo del juego
