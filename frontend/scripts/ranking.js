@@ -84,6 +84,8 @@ async function cargarRanking() {
 
                     <td>${usuario.victorias}</td>
 
+                    <td>${usuario.derrotas}</td>
+
                     <td>${usuario.partidas_jugadas}</td>
 
                 </tr>
