@@ -181,3 +181,15 @@ body::before{
     pointer-events: none;
     z-index: -1;
 }
+
+#logo{
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    width: 120px;
+    z-index: 10;
+
+    filter:
+        drop-shadow(0 0 8px #00ff66)
+        drop-shadow(0 0 20px #00ff66);
+}
