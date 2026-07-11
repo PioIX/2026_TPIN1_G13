@@ -31,4 +31,7 @@ async function registrarse() {
 
     alert(datos.mensaje);
 
+    window.location.href =
+        "login.html";
+
 }
