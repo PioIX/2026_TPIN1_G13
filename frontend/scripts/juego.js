@@ -68,6 +68,16 @@ document
     .querySelector("#btnPista")
     .addEventListener("click", usarPista);
 
+document
+    .querySelector("#btnSalir")
+    .addEventListener("click", () => {
+        const confirmarSalida = confirm("¿Seguro que querés salir de la partida? Se perderá el progreso actual.");
+
+        if (confirmarSalida) {
+            window.location.href = "menu.html";
+        }
+    });
+
 // Cargar primera palabra
 obtenerPalabra(categoria);
 
@@ -79,7 +89,7 @@ async function obtenerPalabra(idCategoria) {
             "Pista: --------";
         ponerTextoSiExiste("#letrasUsadas", "Letras usadas:");
         document.querySelector("#vidas").textContent =
-            "❤️❤️❤️";
+            `Vidas: ${"❤️".repeat(vidas)}`;
         alert("No se ha seleccionado ninguna categoría. Regresa a la pantalla de selección.");
         return;
     }
@@ -150,7 +160,7 @@ async function obtenerPalabra(idCategoria) {
         crearTeclado();
 
         document.querySelector("#vidas").textContent =
-            "❤️❤️❤️";
+            `Vidas: ${"❤️".repeat(vidas)}`;
 
         document.querySelector("#pista").textContent =
             "Pista: --------";

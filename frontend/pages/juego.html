@@ -14,7 +14,7 @@
     <img src="/public/image.png" id="logo">
 
     <video autoplay muted loop id="matrix-video">
-        <source src="public/Video Menu.mp4" type="video/mp4">
+        <source src="/public/video_menu.mp4" type="video/mp4">
     </video>
 
     <div class="contenedor">
@@ -29,8 +29,8 @@
                 Dificultad:
             </h2>
 
-            <h2 id="vidas">
-                ❤️❤️❤️
+            <h2 id="vidas" class="stat-vidas">
+                Vidas: ❤️❤️❤️
             </h2>
 
             <h2 id="puntaje">
@@ -41,25 +41,30 @@
 
         <div class="zonaJuego">
 
-            <h3 id="categoria">
-                Categoría:
-            </h3>
-
-
+            <div class="encabezadoJuego">
+                <h3 id="categoria">
+                    Categoría:
+                </h3>
+                <div id="pista" class="pista-oculta">
+                    Pista: ---
+                </div>
+            </div>
 
             <div id="palabra">
                 _ _ _ _ _ _ _ _
             </div>
 
-            <div id="pista">
-                Pista: ---
-            </div>
-
         </div>
 
-        <button id="btnPista">Usar pista</button>
+        <div class="accionesJuego arribaTeclado">
+            <button id="btnPista">Usar pista</button>
+        </div>
 
         <div id="teclado"></div>
+
+        <div class="accionesJuego">
+            <button id="btnSalir" class="btnSalir">Salir de la partida</button>
+        </div>
     </div>
 
     <script src="/frontend/scripts/juego.js"></script>
