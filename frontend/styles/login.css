@@ -1,16 +1,21 @@
 body{
-    margin: 0;
 
-    min-height: 100vh;
+    margin:0;
 
-    overflow-x: hidden;
+    min-height:100vh;
 
-    font-family: 'Orbitron', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow-x:hidden;
+
+    font-family:'Orbitron',sans-serif;
 
     background:
         radial-gradient(
             circle at top,
-            rgba(40, 120, 40, 0.35),
+            rgba(40,120,40,.35),
             transparent 45%
         ),
 
@@ -22,7 +27,8 @@ body{
             #061406 100%
         );
 
-    background-attachment: fixed;
+    background-attachment:fixed;
+
 }
 body::before{
     content: "";
@@ -46,7 +52,8 @@ body::before{
 }
 
 .contenedor-login{
-    
+
+    width:min(900px,90%);
 
     display:flex;
     flex-direction:column;
@@ -55,6 +62,7 @@ body::before{
     align-items:center;
 
     gap:35px;
+
 }
 
 .contenedor-login h1{

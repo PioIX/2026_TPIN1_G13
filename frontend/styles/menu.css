@@ -10,15 +10,15 @@ body{
     background:
         radial-gradient(
             circle at top,
-            rgba(40,120,40,0.35),
+            rgba(40,120,40,.35),
             transparent 45%
         ),
 
         linear-gradient(
             135deg,
-            #054405 0%,
-            #166116 35%,
-            #229122 70%,
+            #041b04 0%,
+            #0b300b 35%,
+            #124212 70%,
             #061406 100%
         );
 
