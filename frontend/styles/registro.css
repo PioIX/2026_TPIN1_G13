@@ -1,32 +1,39 @@
-body{
+body {
+
     margin: 0;
 
     min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     overflow-x: hidden;
 
     font-family: 'Orbitron', sans-serif;
 
-background:
-    radial-gradient(
-        circle at top,
-        rgba(40, 120, 40, 0.35),
-        transparent 45%
-    ),
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(40,120,40,.35),
+            transparent 45%
+        ),
 
         linear-gradient(
             135deg,
-            #054405 0%,
-            #166116 35%,
-            #229122 70%,
+            #041b04 0%,
+            #0b300b 35%,
+            #124212 70%,
             #061406 100%
         );
 
     background-attachment: fixed;
-    
+
 }
 
-body::before{
+body::before {
     content: "";
 
     position: fixed;
@@ -34,13 +41,11 @@ body::before{
     inset: 0;
 
     background-image:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.02) 0px,
-            rgba(255,255,255,0.02) 1px,
+        repeating-linear-gradient(0deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 1px,
             transparent 1px,
-            transparent 3px
-        );
+            transparent 3px);
 
     pointer-events: none;
 
@@ -50,131 +55,146 @@ body::before{
 
 
 
-.contenedor-registro{
-    min-height:100vh;
+.contenedor-registro {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    gap:25px;
+    gap: 25px;
+
+    padding: 60px 70px;
+
+    background: rgba(0, 0, 0, .30);
+
+    border: 2px solid rgba(57, 255, 20, .35);
+
+    border-radius: 26px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 35px rgba(57, 255, 20, .15);
+
+    width: fit-content;
+
 }
 
-.contenedor-registro h1{
-    color:#8BFF6D;
+.contenedor-registro h1 {
+    color: #8BFF6D;
 
-    font-size:4rem;
+    font-size: 4rem;
 
     text-shadow:
-        0 0 10px rgba(57,255,20,0.7);
+        0 0 10px rgba(57, 255, 20, 0.7);
 }
 
-.fila{
-    display:flex;
+.fila {
+    display: flex;
 
-    gap:40px;
+    gap: 40px;
 }
 
-.fila input{
-    width:380px;
+.fila input {
+    width: 380px;
 
-    padding:20px;
+    padding: 20px;
 
-    border:4px solid #39FF14;
+    border: 4px solid #39FF14;
 
-    border-radius:25px;
+    border-radius: 25px;
 
-    background:rgba(57,255,20,0.12);
+    background: rgba(57, 255, 20, 0.12);
 
-    color:white;
+    color: white;
 
-    font-family:'Orbitron',sans-serif;
+    font-family: 'Orbitron', sans-serif;
 
-    font-size:1.2rem;
+    font-size: 1.2rem;
 
-    text-align:center;
-    
-    
+    text-align: center;
+
+
 }
 
-.fila input::placeholder{
-    color:#606a5d;
+.fila input::placeholder {
+    color: #606a5d;
 }
 
-.fila input:focus{
-    outline:none;
+.fila input:focus {
+    outline: none;
 
     box-shadow:
-        0 0 15px rgba(57,255,20,0.7);
+        0 0 15px rgba(57, 255, 20, 0.7);
 }
 
-#contrasena{
-    width:800px;
+#contrasena {
+    width: 800px;
 
-    padding:20px;
+    padding: 20px;
 
-    border:4px solid #39FF14;
+    border: 4px solid #39FF14;
 
-    border-radius:25px;
+    border-radius: 25px;
 
-    background:rgba(57,255,20,0.12);
+    background: rgba(57, 255, 20, 0.12);
 
-    color:white;
+    color: white;
 
-    font-family:'Orbitron',sans-serif;
+    font-family: 'Orbitron', sans-serif;
 
-    font-size:1.2rem;
+    font-size: 1.2rem;
 
-    text-align:center;
+    text-align: center;
 }
 
-#btnRegistro{
-    width:450px;
+#btnRegistro {
+    width: 450px;
 
-    padding:20px;
+    padding: 20px;
 
-    border:none;
+    border: none;
 
-    border-radius:25px;
+    border-radius: 25px;
 
-    background:#39FF14;
+    background: #39FF14;
 
-    color:black;
+    color: black;
 
-    font-family:'Orbitron',sans-serif;
+    font-family: 'Orbitron', sans-serif;
 
-    font-size:1.5rem;
+    font-size: 1.5rem;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
+    transition: .3s;
 }
 
-#btnRegistro:hover{
-    transform:scale(1.04);
+#btnRegistro:hover {
+    transform: scale(1.04);
 
     box-shadow:
-        0 0 20px rgba(57,255,20,0.8);
+        0 0 20px rgba(57, 255, 20, 0.8);
 }
 
-.volver{
-    background:none;
+.volver {
+    background: none;
 
-    border:none;
+    border: none;
 
-    color:#8BFF6D;
+    color: #8BFF6D;
 
-    font-family:'Orbitron',sans-serif;
+    font-family: 'Orbitron', sans-serif;
 
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.volver:hover{
-    text-decoration:underline;
+.volver:hover {
+    text-decoration: underline;
 }
