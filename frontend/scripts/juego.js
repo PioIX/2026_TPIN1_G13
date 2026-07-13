@@ -237,28 +237,46 @@ function inicializarPalabra() {
     }
 
     actualizarPalabra();
+    
 
 }
 
 function actualizarPalabra() {
 
-    let texto = "";
+    const contenedor =
+        document.querySelector("#palabra");
+
+    contenedor.innerHTML = "";
 
     for (let i = 0; i < palabraMostrada.length; i++) {
 
         if (palabraMostrada[i] == " ") {
 
-            texto += "&nbsp;&nbsp;&nbsp;&nbsp;";
+            const espacio =
+                document.createElement("div");
+
+            espacio.style.width = "40px";
+
+            contenedor.appendChild(espacio);
 
         }
+
         else {
 
-            texto += palabraMostrada[i] + "&nbsp;";
+            const letra =
+                document.createElement("span");
+
+            letra.textContent =
+                palabraMostrada[i];
+
+            letra.style.display = "inline-block";
+            letra.style.margin = "0 6px";
+
+            contenedor.appendChild(letra);
 
         }
-    }
 
-    document.querySelector("#palabra").innerHTML = texto;
+    }
 
 }
 
