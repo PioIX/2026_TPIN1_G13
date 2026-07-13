@@ -11,7 +11,7 @@ let ultimoPuntajeRonda = 0;
 let ultimoUsoPista = false;
 let ultimoErrores = 0;
 
-const PUNTAJE_OBJETIVO = 2000;
+const PUNTAJE_OBJETIVO = 1500;
 
 
 // =========================
