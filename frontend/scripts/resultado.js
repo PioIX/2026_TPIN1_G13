@@ -25,7 +25,7 @@ if (datos.victoria) {
         "¡GANASTE!";
 
     document.querySelector("#mensajeResultado").textContent =
-        "Superaste los 2000 puntos.";
+        "Superaste los 1500 puntos.";
 
     document.querySelector("#tituloResultado").style.color =
         "#39FF14";
@@ -37,7 +37,7 @@ else {
         "PERDISTE";
 
     document.querySelector("#mensajeResultado").textContent =
-        "No alcanzaste los 2000 puntos.";
+        "No alcanzaste los 1500 puntos.";
 
     document.querySelector("#tituloResultado").style.color =
         "#ff4b4b";
