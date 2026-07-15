@@ -1,6 +1,4 @@
-// =========================
-// SISTEMA DE PUNTAJE
-// =========================
+//PUNTAJE
 
 let puntajeTotal = 0;
 
@@ -14,9 +12,7 @@ let ultimoErrores = 0;
 const PUNTAJE_OBJETIVO = 1500;
 
 
-// =========================
-// PUNTAJE BASE
-// =========================
+// puntaje base cuando arrancas la partida
 
 function obtenerPuntajeBase(dificultad) {
 
@@ -39,9 +35,8 @@ function obtenerPuntajeBase(dificultad) {
 }
 
 
-// =========================
-// CALCULAR PUNTOS
-// =========================
+
+    // CALCULAR PUNTOS
 
 function calcularPuntaje(
     dificultad,
@@ -67,11 +62,6 @@ function calcularPuntaje(
     return puntos;
 
 }
-
-
-// =========================
-// GANAR RONDA
-// =========================
 
 function ganarRonda(dificultad) {
 
@@ -100,10 +90,6 @@ function ganarRonda(dificultad) {
 
 }
 
-
-// =========================
-// PERDER RONDA
-// =========================
 
 function perderRonda() {
 
@@ -159,11 +145,7 @@ async function guardarRonda() {
 
 
 
-// =========================
-// FINALIZAR PARTIDA
-// =========================
-
-async function terminarPartida() {
+async function terminarPartida() {                      //SE TERMINO LEO
 
     console.log("ENTRÉ A terminarPartida");
 
@@ -214,6 +196,6 @@ async function terminarPartida() {
     });
 
     window.location.href =
-        "/frontend/pages/resultado.html";
+        "/frontend/pages/resultado.html";           //LO MANDO A RESULTADO.HTML CUANDO TERMINA DE JUGAR
 
 }

@@ -1,16 +1,16 @@
 console.log("Ranking");
 
-// Botón volver
+
 document
-    .querySelector("#btnVolver")
+    .querySelector("#btnVolver")    // Botón volver
     .addEventListener("click", () => {
 
         window.location.href = "menu.html";
 
     });
 
-// Cargar ranking al abrir la página
-cargarRanking();
+
+cargarRanking();    // Cargamos ranking al abrir la página
 
 async function cargarRanking() {
 
@@ -22,10 +22,10 @@ async function cargarRanking() {
 
         let usuarios = await respuesta.json();
 
-        // Solo mostrar usuarios con puntaje
+        // Solo mostramos usuarios con puntaje
         usuarios = usuarios.filter(usuario => usuario.puntaje > 0);
 
-        // Ordenar por puntaje (mayor a menor)
+        // Orden por puntaje de menor a meyor
         usuarios.sort((a, b) => b.puntaje - a.puntaje);
 
         const tabla =
@@ -33,7 +33,7 @@ async function cargarRanking() {
 
         tabla.innerHTML = "";
 
-        // Si no hay usuarios con puntaje
+        // nuestro ranking NO va a mostrar jugadores sin puntaje. si no hay users con puntaje todavia...
         if (usuarios.length == 0) {
 
             tabla.innerHTML = `
