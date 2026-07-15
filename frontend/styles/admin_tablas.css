@@ -6,6 +6,8 @@ body{
 /* Contenedor principal */
 .contenedor{
     min-height:100vh;
+    
+    height:auto;
 
     display:flex;
 
@@ -16,6 +18,8 @@ body{
     justify-content:flex-start;
 
     padding-top:80px;
+
+    box-sizing:border-box;
 }
 
 
@@ -143,9 +147,9 @@ td button:hover{
 
     padding:15px 25px;
     
-    margin-top:0px;
+    margin-top:25px;
 
-    margin-bottom:0px;
+    margin-bottom:40px;
 
     border:3px solid #39FF14;
 
