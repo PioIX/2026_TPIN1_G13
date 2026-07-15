@@ -21,6 +21,37 @@ const letras = [
 
 crearTeclado();
 
+//teclado fisico
+document.addEventListener("keydown", presionarTecla);
+
+function presionarTecla(evento) {           //usa el objeto js que viene con la ejecucion del evento
+
+    const letra = evento.key.toUpperCase();         //obtiene la tecla presionada de ese objeto con .key
+
+    if (!letras.includes(letra)) {
+
+        return;     //termina la ejecucion de la funcion si la letra ingresada no se encuntra en el array de letras del teclado general
+                    //basicamente, si la letra que probe no se encuentra disponible en el teclado, no pasa nada abrazo.
+
+    }
+
+    const botones =
+        document.querySelectorAll(".tecla");
+
+    botones.forEach(boton => {
+
+        if (boton.textContent == letra && !boton.classList.contains("usada")) {
+
+            boton.classList.add("usada");         
+            // le agrega la clase usada  
+            //Eso hace que cambie el CSS del botón.
+
+            intentarLetra(letra);       //llama a la funcion le pasa por parametro la letra que tecleamos
+                                        //la misma f sirve tanto para si esperamos el evento click o el keydowm eso es god
+        }
+    });
+}
+
 function ponerTextoSiExiste(selector, text) {
     const el = document.querySelector(selector);
     if (el) el.textContent = text;
